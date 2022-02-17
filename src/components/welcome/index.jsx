@@ -1,6 +1,7 @@
-import './styles.css';
-import Popup from 'reactjs-popup';
+import './welcome.css';
 import image from './image.jpg'
+import Login from '../login-popup';
+import Register from '../register-popup';
 
 export default function Welcome(){
     
@@ -10,37 +11,12 @@ export default function Welcome(){
             <div className='welcome-info'>
                 <h1>Welcome</h1>
                 <div className='buttons'>
-                    <Popup id="login" trigger={<button>Log In</button>} position="top left">
-                        {close => (
-                        <div>
-                            <input type="text" placeholder='email' />
-                            <input type="text" placeholder='password' />
-                            <a href='https://www.google.com/'>Forgot your password?</a>
-                            <button>Log In</button>  
-                            <a className="close" onClick={close}>
-                            &times;
-                            </a>
-                        </div>
-                        )}
-                    </Popup>
-                    <Popup id="sign-in" trigger={<button>Sign In (not working yet)</button>} position="top right">
-                        {close => (
-                        <div>
-                            <input type="text" placeholder='full name' />
-                            <input type="text" placeholder='email' />
-                            <input type="text" placeholder='password' />
-                            <input type='checkbox'>Acepto la <a ref="https://www.google.com/">política de privacidad</a></input>
-                            <button>Register</button>  
-                            <a className="close" onClick={close}>
-                            &times;
-                            </a>
-                        </div>
-                        )}
-                    </Popup>
+                    <Login/>
+                    <Register />
                 </div>    
             </div>  
             <div className='welcome-photo'>
-                <img src={image} className='image'></img>
+                <img src={image} alt={image} className='image'></img>
             </div>      
         </div>
     )

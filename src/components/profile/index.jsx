@@ -1,7 +1,7 @@
-import './styles.css'
+import './profile.css'
 
 
-export default function Login(){
+export default function Profile(){
     return(
         <div className='main'>
             <h1>Prueba</h1>

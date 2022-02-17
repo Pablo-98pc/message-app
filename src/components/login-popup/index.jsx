@@ -1,15 +1,18 @@
-import styles from './styles.css'
+import './login.css'
 
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
-const CustomPopup = (props) => {
- 
+export default function Login(){
 
-  return (
-    <div>     
-      <h1>Pop Up</h1>
-    </div>
-  );
-};
-
-
-export default CustomPopup;
+  return(
+      <Popup trigger={<button> Log in</button>} position="right center">
+  <div>
+    <input type="text" placeholder="username"></input>
+    <input type="password" placeholder='password'></input>
+    <span><a href='http://localhost:3000/'>Forgot your password?</a></span>
+    <button>LOG IN</button>
+  </div>
+</Popup>
+  )
+} 
