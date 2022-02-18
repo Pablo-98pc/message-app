@@ -1,7 +1,7 @@
 import './welcome.css';
 import image from './image.jpg'
-import Login from '../login-popup';
-import Register from '../register-popup';
+import Login from './login-popup/index';
+import Register from './register-popup/index'
 
 export default function Welcome(){
     
