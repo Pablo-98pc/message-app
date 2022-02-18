@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
-  Route
+  Routes, Route
 } from "react-router-dom";
 import './index.css';
 import Welcome from './components/welcome/index';
@@ -11,10 +11,10 @@ import Profile from './components/profile/index';
 
 ReactDOM.render(
   <Router>
-    <Switch >
-    <Route exact path="/" component={Welcome} />
-    <Route exact path="/profile" component={Profile} />
-    </Switch>
+    <Routes >
+      <Route exact path="/" element={<Welcome/>} />
+      <Route exact path="/profile" element={<Profile />} />
+    </Routes>
   </Router>
  
   ,
