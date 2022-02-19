@@ -5,6 +5,7 @@ import {
   Routes, Route
 } from "react-router-dom";
 import './index.css';
+import './normalize.css'
 import Welcome from './components/welcome/index';
 import Profile from './components/profile/index';
 
