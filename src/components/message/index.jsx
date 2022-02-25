@@ -5,7 +5,7 @@ import Subfooter from './subfooter';
 import { useState, useEffect, createContext , useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import getData from './helpers/getData';
+import getData from '../helpers/getData';
 
 export const Context = createContext(null);
 

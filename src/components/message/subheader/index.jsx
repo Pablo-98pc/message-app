@@ -1,7 +1,7 @@
 /* import './message.css' */
 import { useState , useContext} from 'react';
 import {Context} from '../index';
-import getMessages from'../helpers/getMessages';
+import getMessages from'../../helpers/getMessages';
 export default function Subheader(mydata){
     const data =  useContext(Context);
     console.log(data);
