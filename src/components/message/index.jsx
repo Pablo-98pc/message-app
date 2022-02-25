@@ -2,73 +2,52 @@ import './message.css'
 import Subheader from './subheader';
 import Main from './main';
 import Subfooter from './subfooter';
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext , useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import getData from './helpers/getData';
 
 export const Context = createContext(null);
 
 export default function Message(type){
     const { id } = useParams();
-    type = 'user';//esto no se como pasarlo, si por props, por context o por link
-    console.log(id);
-    let urlprueba = `http://localhost:3001/api/users/1`;
-    console.log(urlprueba);
-    const [mydata, setMyData] = useState(null);
-    const [myurl, setMyUrl] = useState(urlprueba);
+    type = 'users';//esto no se como pasarlo, si por props, por context o por link
+    const [mydata, setMyData] = useState([]);
 
-    async function geturl() { /* tiene que ir a un helper */ /* minimo fuera del useEffect */
-        switch (type) {
-        case 'user':
-            await setMyUrl(`http://localhost:3001/api/users/${id}`);
-            break;
-         case 'group':
-            await setMyUrl(`http://localhost:3001/api/groups/${id}`);
-            break;
-        default:
-            console.log('error');
-    }
-    }    
-    /*     async function fetchApi() {
-        console.log(myurl);
-        await fetch (myurl,{
-            method: "GET",
-            mode:"no-cors",
-            referrer:"no-referrer",
-            headers: { 'Content-Type': 'application/json','cors':'no-cors'  }
-        })
-        .then((resp => resp.json()))
-        .then(function (data) {
-            setMyData(data.results);
-            console.log(data.results);
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
-    } */
+/*     const setData = useCallback(() => {
+         getData(id,type)
+            .then ((newData) => {
+                setMyData(newData.data);
+            })
+    },[id,type]); */
     
-    useEffect(async () => {
-        await geturl();
-        async function fetchApi() {
-            try {
-              let response = await axios.get(myurl);
-              setMyData(response.data);
-              
-            } catch (err) {
-              console.log(err);
-            }
-          }
-        await fetchApi();
-    }, [/* id,myurl */])
+    const setData = () => {
+         getData(id,type)
+            .then ((newData) => {
+                setMyData(newData.data);
+            })
+    };
 
+    useEffect(() => {
+        setData();
+    }, [/* id,myurl */])
+   //condicionar el renderizado a mydata, si es null, no renderizar
     console.log(mydata);
-    return(
-        <Context.Provider values={{mydata, setMyData}}>
-            <div className='main'>
-                <Subheader />
-                <Main />
-                <Subfooter />
-            </div>            
-        </Context.Provider>
-    )
+    if (mydata.length === 0) {
+      return(
+          <h1>charging</h1>
+      );
+    }
+    else {
+        console.log(mydata);
+        return(
+            <Context.Provider value={mydata}>
+                <div className='main'>
+                    <Subheader element={mydata}/>
+                    <Main />
+                    <Subfooter />
+                </div>            
+            </Context.Provider>
+        )        
+    }
 }
