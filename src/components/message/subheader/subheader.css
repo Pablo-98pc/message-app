@@ -1,0 +1,11 @@
+.subheader {
+    width: 90%;
+    margin:auto;
+    height: 90vh;
+}
+.main-subheader, .message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
