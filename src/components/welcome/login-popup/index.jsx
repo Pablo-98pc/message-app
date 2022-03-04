@@ -17,27 +17,57 @@ export default function Login(){
   const togglePassword = () => {
     setPasswordShown(!passwordShown)
   }
-  const getData = () => {
-    getProfileByUsername(username)
-       .then ((newData) => {
-           setUser(newData.data);
+  async function ultimaprueba(a) {
+    setUser({...a});
+  }
+
+  const handleUser = async(newUser) => {
+    await ultimaprueba(newUser)
+     .then (() => checkPassword());
+  }
+
+  const getData= useCallback(async () => {
+    await getProfileByUsername(username)
+        .then ((newData) => {
+          console.log(newData.data);
+          setUser({...newData.data});
+
        })
-  };
+},[user]);
+
+
+  /* const getData = async () => {
+    await getProfileByUsername(username)
+        .then ((newData) => {
+          console.log(newData.data); */
+          /* setUser({...newData.data}); */
+         /*  handleUser(newData.data);
+       })
+       
+       console.log(user);
+       
+  }; */
   //ahora mismo al dar al boton login, cambiaria el estado del user, y el useEffect habria que vincularlo
   //a ese estado, así solo entraria si hay datos en el usuario, ahi es cuando deberíamos hacer la comprobación del password, que ya está en el estado deberíamos
   //lo ideal sería hacerlo en un helper, 
  
 
   const checkPassword = () => {
+    console.log('dentro de checkPassword');
+    console.log(password);
+    console.log(user.password);
     if (password === user.password) {
+      console.log('contraseña correcta');
       setLogged(!logged);//esto se podría usar para hacer un renderizado condicional
       //el usuario ha introducido la contraseña correcta
-      console.log('contraseña correcta');
     }
   };
 
   useEffect (()=> {
-    checkPassword()
+    if (user) {
+
+      checkPassword();
+    }
   }, [user]);
 
  
@@ -57,7 +87,13 @@ export default function Login(){
     checkUserData();
   }, []);
   */
+if (logged) {
+  return(
+    <h1>logeado</h1>
+  )
 
+}
+else {
   return(
       <Popup trigger={<button> Log in</button>} position="right center">
   <div>
@@ -69,4 +105,5 @@ export default function Login(){
   </div>
 </Popup>
   )
+}
 }
