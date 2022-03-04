@@ -1,4 +1,4 @@
-import React , { useState , useEffect, createContext, useCallback} from 'react'
+import React , { useState , useRef, useEffect, createContext, useCallback} from 'react'
 import {
   BrowserRouter as Router,
   Routes, Route
@@ -19,24 +19,15 @@ export default function App(){
     const [password, setPassword] = useState(null);
     const [user, setUser] = useState(null);
     const [logged, setLogged] = useState(false);
-
+    const userprueba = useRef();
     const togglePassword = () => {
         setPasswordShown(!passwordShown)
     }
-/*     async function ultimaprueba(a) {
-        setUser({...a});
-    }
-
-    const handleUser = async(newUser) => {
-        await ultimaprueba(newUser)
-        .then (() => checkPassword());
-    } */
 
     const getData= useCallback(async () => {
-        await setUser(username);
-        await getProfileByUsername(username)
+        let usertosearch = userprueba.current.value;
+        await getProfileByUsername(usertosearch)
             .then ((newData) => {
-            console.log(newData.data);
             setUser({...newData.data});
 
         })
@@ -44,8 +35,6 @@ export default function App(){
 
     const checkPassword = () => {
         console.log('dentro de checkPassword');
-        console.log(password);
-        console.log(user.password);
         if (password === user.password) {
         console.log('contraseña correcta');
         setLogged(!logged);//esto se podría usar para hacer un renderizado condicional si
@@ -55,22 +44,9 @@ export default function App(){
 
     useEffect (()=> {
         if (user) {
-
         checkPassword();
         }
     }, [user]);
-    useEffect (()=> {
-        console.log('log changed');
-    }, [logged]);
-    
-    /* const handleUsername = useCallback(async (e) => {
-        console.log(e);
-        await (() => {
-             setUsername(e);
-        })
-            
-    }, [user]) */
-    
 
     if (!logged) {
         return(<>
@@ -80,7 +56,7 @@ export default function App(){
                     <div className='buttons'>
                     <Popup trigger={<button> Log in</button>} position="right center">
                         <div>
-                            <input id="username" type="text" placeholder="username" onChange={(async(event) => await setUsername(event.target.value))}></input>
+                            <input id="username" ref= {userprueba} type="text" placeholder="username" onChange={(async(event) => await setUsername(event.target.value))}></input>
                             <input type={passwordShown ? "text" : "password"} placeholder='password' onChange={event => setPassword(event.target.value)}></input>
                             <button onClick={togglePassword}>Show Password</button>
                             <span><a href='http://localhost:3000/%27%3E'>Forgot your password?</a></span>
