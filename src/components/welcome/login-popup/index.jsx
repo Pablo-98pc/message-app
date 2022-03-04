@@ -36,10 +36,10 @@ export default function Login(){
     }
   };
 
-  useEffect (()=> {
+ /*  useEffect (()=> {
     checkPassword()
   }, [user]);
-
+ */
  
 
 /*   useEffect(() => { */
