@@ -1,22 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Routes, Route
-} from "react-router-dom";
 import './index.css';
-import Welcome from './components/welcome/index';
-import Profile from './components/profile/index';
 
+import App from './App.jsx';
 
 ReactDOM.render(
-  <Router>
-    <Routes >
-      <Route exact path="/" element={<Welcome/>} />
-      <Route exact path="/profile/:id" element={<Profile />} />
-    </Routes>
-  </Router>
- 
-  ,
-  document.getElementById('root')
+  <App />,  document.getElementById('root')
 );

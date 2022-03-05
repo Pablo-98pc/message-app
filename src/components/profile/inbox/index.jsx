@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Inbox() {
     const [messages,setMessages] = useState([])
+    const [isLoading,setIsLoading] = useState(true);
     const {id} = useParams();
     useEffect(()=>{
         async function FetchData(){
@@ -14,6 +15,7 @@ export default function Inbox() {
             let data = resp.data
             console.log(data[1])
             setMessages(data[1])
+            setIsLoading(false)
             }
             catch(err){
                 console.log(err)
@@ -24,11 +26,16 @@ export default function Inbox() {
         
 
     },[id])
-    return <div className="card bg-light mb-3"style={{maxWidth: "40%",position:"inherit"}} >
+    return <div className="card bg-light mb-3"style={{maxWidth: "40%",position:"inherit",margin:'auto',maxHeight:'70%'}} >
     <div className="card-header text-center" >
         Last Messages
     </div>
-      {messages.map((message,index)=> <div className="card-body"key={index}> <Link to={`/conversation/${message.id}`} ><p className="card-text" >{message.subject}</p></Link>  </div>)} 
+    {isLoading ? <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div> : 
+      messages.map((message,index)=> <div className="card-body"key={index}> <Link to={`messages/message/${message.id}`} ><p className="card-text" >{message.subject}</p></Link>  </div>) }
   </div>
      
 }

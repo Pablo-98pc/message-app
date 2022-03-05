@@ -5,9 +5,11 @@ import Inbox from './inbox';
 
 
 export default function Profile(){
-    return<div >
+    return<>
             <Avatar/>
+            <div className='inbox'>
             <Inbox/>
-        </div>
+            </div>
+        </>
     
 }

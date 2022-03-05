@@ -1,6 +1,6 @@
 import './avatar.css'
 import { useEffect, useState } from 'react'
-import Swal from 'sweetalert2'
+/* import Swal from 'sweetalert2' */
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
