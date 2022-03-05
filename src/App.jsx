@@ -8,6 +8,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import image from './image.jpg';
 import Profile from './components/profile/index';
+import Conversation from './components/conversation';
 import Message from './components/message';
 import PageNotFound from './components/404';
 import getProfileByUsername from './components/helpers/getProfileByUsername';
@@ -106,8 +107,9 @@ export default function App(){
                     {/* <Header/> */}
                     <Routes >
                     {/* <Route path="/" element={<Welcome/>} /> */}
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/messages/*" element={<Message />} />
+                    <Route path="/:{user.id}" element={<Profile />} />
+                    <Route path="/conversation/:type/:id" element={<Conversation />} />
+                    <Route path="/message/:id" element={<Message/>} />
                     <Route path="*" element={<PageNotFound />} />
                     {/* <Route path="*">
                         <Redirect to="/404" />
