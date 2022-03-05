@@ -65,7 +65,7 @@ export default function Avatar () {
         <OffCanvasBody
          
         >
-         <img className='perfilImg' src='https://cdn-icons.flaticon.com/png/128/3736/premium/3736502.png?token=exp=1645566551~hmac=f3d182445ba0fb59eb6828592161c149' onClick={handleMenu}></img>
+         <img  alt='Profile pic' className='perfilImg' src='https://cdn-icons.flaticon.com/png/128/3736/premium/3736502.png?token=exp=1645566551~hmac=f3d182445ba0fb59eb6828592161c149' onClick={handleMenu}></img>
         </OffCanvasBody>
       
         <OffCanvasMenu className='card' style={{height:'100vh'}}>
