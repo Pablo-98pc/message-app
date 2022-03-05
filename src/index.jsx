@@ -13,7 +13,7 @@ ReactDOM.render(
   <Router>
     <Routes >
       <Route exact path="/" element={<Welcome/>} />
-      <Route exact path="/profile" element={<Profile />} />
+      <Route exact path="/profile/:id" element={<Profile />} />
     </Routes>
   </Router>
  
