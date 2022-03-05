@@ -107,7 +107,7 @@ export default function App(){
                     {/* <Header/> */}
                     <Routes >
                     {/* <Route path="/" element={<Welcome/>} /> */}
-                    <Route path="/:{user.id}" element={<Profile />} />
+                    <Route exact path="/" element={<Profile />} />
                     <Route path="/conversation/:type/:id" element={<Conversation />} />
                     <Route path="/message/:id" element={<Message/>} />
                     <Route path="*" element={<PageNotFound />} />

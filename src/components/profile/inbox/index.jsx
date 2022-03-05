@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState , useContext} from "react"
 import axios from "axios";
 import { useParams } from 'react-router-dom'
 import { Link } from "react-router-dom";
-
-
+import {Context} from '../../../App';
+ 
 export default function Inbox() {
     const [messages,setMessages] = useState([])
     const [isLoading,setIsLoading] = useState(true);
     const {id} = useParams();
+    const dataprueba = useContext(Context);
+
     useEffect(()=>{
         async function FetchData(){
             try {
-            const resp = await axios.get(`http://localhost:3001/api/messages/withuser/${id}`);
+            const resp = await axios.get(`http://localhost:3001/api/messages/withuser/${dataprueba.id}`);
             let data = resp.data
-            console.log(data[1])
-            setMessages(data[1])
+            console.log(data.rows)
+            setMessages(data.rows)
             setIsLoading(false)
             }
             catch(err){

@@ -1,10 +1,10 @@
 import './avatar.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState , useContext } from 'react'
 /* import Swal from 'sweetalert2' */
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
-
+import {Context} from '../../../App';
 
 
 export default function Avatar () {
@@ -12,11 +12,12 @@ export default function Avatar () {
     const [userName,setUserName] = useState(undefined) 
     const [isMenuOpened,setIsMenuOpened] = useState(false)
     const [isLoading,setIsLoading] = useState(true);
-
+    const datalogged = useContext(Context);
+    console.log(datalogged);
      useEffect(()=> {
         async function FetchData(){
             try {
-            const resp = await axios.get(`http://localhost:3001/api/users/profile/${id}`);
+            const resp = await axios.get(`http://localhost:3001/api/users/${datalogged.id}`);
             let data = resp.data
             setUserName(data.nick);
             setIsLoading(false);
