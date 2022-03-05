@@ -11,6 +11,7 @@ import Profile from './components/profile/index';
 import Message from './components/message';
 import PageNotFound from './components/404';
 import getProfileByUsername from './components/helpers/getProfileByUsername';
+import postNewUser from './components/helpers/postNewUser';
 export const Context = createContext(null);
 
 export default function App(){
@@ -19,7 +20,15 @@ export default function App(){
     const [password, setPassword] = useState(null);
     const [user, setUser] = useState(null);
     const [logged, setLogged] = useState(false);
+    const [newUser, setNewuser] = useState(false);
+
     const userprueba = useRef();
+    const bodyusername = useRef();
+    const bodylastname = useRef();
+    const bodyfirstname = useRef();
+    const bodyemail = useRef();
+    const bodypassword = useRef();
+
     const togglePassword = () => {
         setPasswordShown(!passwordShown)
     }
@@ -29,15 +38,26 @@ export default function App(){
         await getProfileByUsername(usertosearch)
             .then ((newData) => {
             setUser({...newData.data});
+            setNewuser(false);
+        })
+    },[user]);
+
+    const postData= useCallback(async () => {
+        let body = {username: bodyusername.current.value, last_name: bodylastname.current.value, 
+            first_name: bodyfirstname.current.value, email: bodyemail.current.value, password: bodypassword.current.value};
+        await postNewUser(body)
+            .then ((newData) => {
+            setUser({...newData.data});
+            setNewuser(true);
 
         })
     },[user]);
 
     const checkPassword = () => {
         console.log('dentro de checkPassword');
-        if (password === user.password) {
+        if (password === user.password || newUser) {
         console.log('contraseña correcta');
-        setLogged(!logged);//esto se podría usar para hacer un renderizado condicional si
+        setLogged(!logged);//como controlo si aquí llega del login o del register???
         //el usuario ha introducido la contraseña correcta
         }
     };
@@ -46,10 +66,10 @@ export default function App(){
         if (user) {
         checkPassword();
         }
-    }, [user]);
+    }, [user,newUser]);
 
-    if (!logged) {
-        return(<>
+    return(<> 
+        {!logged? 
             <div className='welcome'>
                 <div className='welcome-info'>
                     <h1>Welcome</h1>
@@ -65,13 +85,13 @@ export default function App(){
                     </Popup>
                     <Popup  trigger={<button> Register</button>} position="right center">
                         <div>
-                            <input type="text" placeholder="username"></input>
-                            <input type="text" placeholder="name"></input>
-                            <input type="text" placeholder="surname"></input>
-                            <input type="text" placeholder='email'></input>
-                            <input type={passwordShown ? "text" : "password"} placeholder='password'></input>
+                            <input type="text" ref= {bodyusername} placeholder="username"></input>
+                            <input type="text" ref= {bodyfirstname} placeholder="name"></input>
+                            <input type="text" ref= {bodylastname} placeholder="surname"></input>
+                            <input type="text" ref= {bodyemail} placeholder='email'></input>
+                            <input type={passwordShown ? "text" : "password"} ref= {bodypassword} placeholder='password'></input>
                             <button onClick={togglePassword}>Show Password</button>
-                            <button>REGISTER</button>
+                            <button onClick={postData}>REGISTER</button>
                         </div>
                     </Popup>
                     </div>    
@@ -80,12 +100,7 @@ export default function App(){
                     <img src={image} alt={image} className='image'></img>
                 </div>      
             </div>
-        </>
-        )
-        
-    } 
-    else {
-        return(<>
+        :
             <Context.Provider value={user}>
                 <Router>
                     {/* <Header/> */}
@@ -101,9 +116,9 @@ export default function App(){
                 </Router>
             <h1>logeado</h1>
             </Context.Provider>
+        }
         </>
-        )
-    }
+    )
     }
  
 
