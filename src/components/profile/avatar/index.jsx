@@ -1,25 +1,23 @@
 import './avatar.css'
 import { useEffect, useState , useContext } from 'react'
-/* import Swal from 'sweetalert2' */
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
 import {Context} from '../../../App';
 
 
 export default function Avatar () {
-    const {id} = useParams();
-    const [userName,setUserName] = useState(undefined) 
+    const [userInfo,setUserInfo] = useState(undefined) 
     const [isMenuOpened,setIsMenuOpened] = useState(false)
     const [isLoading,setIsLoading] = useState(true);
     const datalogged = useContext(Context);
-    console.log(datalogged);
+    
      useEffect(()=> {
         async function FetchData(){
             try {
             const resp = await axios.get(`http://localhost:3001/api/users/${datalogged.id}`);
-            let data = resp.data
-            setUserName(data.nick);
+            let user = resp.data
+            setUserInfo(user);
+            console.log(userInfo)
             setIsLoading(false);
             }
             catch(err){
@@ -30,26 +28,10 @@ export default function Avatar () {
         FetchData()
 
 
-    },[userName,id]) 
+    },[userInfo,datalogged.id]) 
 
 
-  /* Pop-up menu to set description of user through sweetalert library*/
-   /*   const handleSetDescription= () => {Swal.fire( {
-        title: 'Enter your description',
-        input:"text",
-        inputLabel:'Your description',
-        inputValidator : (value) => {
-            if(value.length > 150){
-                return 'max 150 characters'
-            } else if(value === ''){
-                return 'set a description'
-            }
-        }
-    }).then((result)=>{
-            if(result.value !== undefined)
-            setDescription(result.value);
-        }
-    )}       */
+
     /* set the status of the profile menu*/
     const handleMenu = () => {
         setIsMenuOpened(!isMenuOpened)
@@ -78,8 +60,7 @@ export default function Avatar () {
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-        </div> : <><h1>{userName}</h1><div className="description">
-                {/* {description} <button  onClick={handleSetDescription}>edit</button> */}
+        </div> : <><h1>{userInfo.username}</h1><p>{userInfo.email}</p><div className="description">
             </div><button onClick={handleMenu}>Cerrar</button></> }
              </div>
     </div> 

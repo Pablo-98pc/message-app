@@ -1,13 +1,11 @@
 import { useEffect, useState , useContext} from "react"
 import axios from "axios";
-import { useParams } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import {Context} from '../../../App';
  
 export default function Inbox() {
     const [messages,setMessages] = useState([])
     const [isLoading,setIsLoading] = useState(true);
-    const {id} = useParams();
     const dataprueba = useContext(Context);
 
     useEffect(()=>{
@@ -27,7 +25,7 @@ export default function Inbox() {
         FetchData()
         
 
-    },[id])
+    },[dataprueba.id])
     return <div className="card bg-light mb-3"style={{maxWidth: "40%",position:"inherit",margin:'auto',maxHeight:'70%'}} >
     <div className="card-header text-center" >
         Last Messages
