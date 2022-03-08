@@ -28,7 +28,7 @@ export default function Avatar () {
         FetchData()
 
 
-    },[userInfo,datalogged.id]) 
+    },[datalogged.id]) 
 
 
 
