@@ -3,15 +3,24 @@
     width: 90%;
     margin: auto;
 }
-.main-body {
+.new-message {
+        width:70%;
+    margin: auto;
+}
+.form-header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-}
-.message-header {
-    display: flex;
     column-gap: 3rem;
 }
-.respond {
+.form-message {
+    width:100%;
+    border: 1px solid black;
+    background-color: white;
+}
+.form-button {
     display: grid;
     place-content: center;
+}
+#textinput {
+    width: 100%;
 }

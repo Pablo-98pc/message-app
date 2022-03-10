@@ -7,18 +7,21 @@ import './app.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import image from './image.jpg';
+import Header from './components/header'
 import Profile from './components/profile/index';
 import Conversation from './components/conversation';
 import Message from './components/message';
+import NewMessage from './components/newmessage';
 import PageNotFound from './components/404';
 import getProfileByUsername from './components/helpers/getProfileByUsername';
 import postNewUser from './components/helpers/postNewUser';
 export const Context = createContext(null);
+/* export const checkPassword = ; */
 
 export default function App(){
     const [passwordShown, setPasswordShown] = useState(false)
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [user, setUser] = useState(null);
     const [logged, setLogged] = useState(false);
     const [newUser, setNewuser] = useState(false);
@@ -42,6 +45,29 @@ export default function App(){
             setNewuser(false);
         })
     },[user]);
+
+/*     window.localStorage.setItem(
+        'userlogged',JSON.stringify(user)
+    )
+
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('userlogged');
+        if (loggedUserJSON) {
+            const user = JSON.parse(loggedUserJSON);
+            setUser(user);
+
+        }
+    }, []) esto seria para guardar en localstorage y para recuperarlo luego*/
+
+    /* const getData= ((event) => {
+        event.preventDefault();
+        console.log(event);
+         getProfileByUsername(username)
+            .then ((newData) => {
+            setUser({...newData.data});
+            setNewuser(false);
+        })
+    },[user]); */
 
     const postData= useCallback(async () => {
         let body = {username: bodyusername.current.value, last_name: bodylastname.current.value, 
@@ -76,6 +102,15 @@ export default function App(){
                     <h1>Welcome</h1>
                     <div className='buttons'>
                     <Popup trigger={<button> Log in</button>} position="right center">
+{/*                         <form onSubmit={getData}>
+                            <input id="username" ref= {userprueba} value={username} type="text" placeholder="username" 
+                            onChange={({event}) => setUsername(event.target.value)}></input>
+                            <input type={passwordShown ? "text" : "password"} placeholder='password' value={password}
+                            onChange={({event}) => setPassword(event.target.value)}></input>
+                            <button onClick={togglePassword}>Show Password</button>
+                            <span><a href='http://localhost:3000/%27%3E'>Forgot your password?</a></span>
+                            <button type="submit">LOG IN</button>
+                        </form> */}
                         <div>
                             <input id="username" ref= {userprueba} type="text" placeholder="username" onChange={(async(event) => await setUsername(event.target.value))}></input>
                             <input type={passwordShown ? "text" : "password"} placeholder='password' onChange={event => setPassword(event.target.value)}></input>
@@ -104,12 +139,13 @@ export default function App(){
         :
             <Context.Provider value={user}>
                 <Router>
-                    {/* <Header/> */}
+                    <Header/>
                     <Routes >
                     {/* <Route path="/" element={<Welcome/>} /> */}
                     <Route exact path="/" element={<Profile />} />
                     <Route path="/conversation/:type/:id" element={<Conversation />} />
                     <Route path="/message/:id" element={<Message/>} />
+                    <Route path="/newmessage" element={<NewMessage/>} />
                     <Route path="*" element={<PageNotFound />} />
                     {/* <Route path="*">
                         <Redirect to="/404" />
