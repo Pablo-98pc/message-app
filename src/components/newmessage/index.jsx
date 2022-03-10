@@ -53,7 +53,7 @@ export default function NewMessage(){
                         <input type="text" placeholder="to" name ='touser' ref ={receiver} required/>
                     </div>
                     <div className='form-message'>
-                        <input type="text" placeholder="Text" name ="message" ref ={message} required/>
+                        <input id ="textinput" type="text" placeholder="Text" name ="message" ref ={message} required/>
                     </div>
                     <div className='form-button'>
                         <button onClick={handleAnswer}>Submit</button>

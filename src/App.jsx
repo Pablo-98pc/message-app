@@ -14,6 +14,7 @@ import Message from './components/message';
 import NewMessage from './components/newmessage';
 import PageNotFound from './components/404';
 import getProfileByUsername from './components/helpers/getProfileByUsername';
+import getProfileByUsernameLogin from './components/helpers/getProfileByUsernameLogin';
 import postNewUser from './components/helpers/postNewUser';
 export const Context = createContext(null);
 /* export const checkPassword = ; */
@@ -32,6 +33,7 @@ export default function App(){
     const bodyfirstname = useRef();
     const bodyemail = useRef();
     const bodypassword = useRef();
+    const passwordlogin = useRef();
 
     const togglePassword = () => {
         setPasswordShown(!passwordShown)
@@ -39,12 +41,24 @@ export default function App(){
 
     const getData= useCallback(async () => {
         let usertosearch = userprueba.current.value;
+        let passwordtocheck = passwordlogin.current.value;
+        await getProfileByUsernameLogin(usertosearch, passwordtocheck)
+            .then ((newData) => {
+            setUser({...newData.data});
+            setNewuser(false);
+            console.log(user);
+            setLogged(true);
+        })
+    },[user]);
+/*     const getData= useCallback(async () => {
+        let usertosearch = userprueba.current.value;
         await getProfileByUsername(usertosearch)
             .then ((newData) => {
             setUser({...newData.data});
             setNewuser(false);
+            console.log(user);
         })
-    },[user]);
+    },[user]); */
 
 /*     window.localStorage.setItem(
         'userlogged',JSON.stringify(user)
@@ -76,24 +90,24 @@ export default function App(){
             .then ((newData) => {
             setUser({...newData.data});
             setNewuser(true);
+            setLogged(true);
 
         })
     },[user]);
 
-    const checkPassword = () => {
+/*     const checkPassword = () => {
         console.log('dentro de checkPassword');
         if (password === user.password || newUser) {
         console.log('contraseña correcta');
-        setLogged(!logged);//como controlo si aquí llega del login o del register???
-        //el usuario ha introducido la contraseña correcta
+        setLogged(!logged);
         }
-    };
+    }; 
 
     useEffect (()=> {
         if (user) {
         checkPassword();
         }
-    }, [user,newUser]);
+    }, [user,newUser]); */
 
     return(<> 
         {!logged? 
@@ -113,7 +127,7 @@ export default function App(){
                         </form> */}
                         <div>
                             <input id="username" ref= {userprueba} type="text" placeholder="username" onChange={(async(event) => await setUsername(event.target.value))}></input>
-                            <input type={passwordShown ? "text" : "password"} placeholder='password' onChange={event => setPassword(event.target.value)}></input>
+                            <input type={passwordShown ? "text" : "password"} placeholder='password' ref={passwordlogin} onChange={event => setPassword(event.target.value)}></input>
                             <button onClick={togglePassword}>Show Password</button>
                             <span><a href='http://localhost:3000/%27%3E'>Forgot your password?</a></span>
                             <button onClick={getData}>LOG IN</button>
