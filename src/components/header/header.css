@@ -6,10 +6,19 @@
     margin: auto;
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
 }
 .header-nav {
-    margin-right: 10rem;
+    margin-right: 5%;
     display: flex;
     column-gap: 2rem;
-    justify-content: center;
+}
+.header-nav a {
+   /*  border: 1px solid var(--color7); */
+    background-color: var(--color7);
+    padding:0.8rem 1rem;
+    border-radius: 10px;
+}
+.header-nav a:hover {
+    transform: scale(1.1);
 }

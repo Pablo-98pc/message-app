@@ -1,7 +1,9 @@
 .main{
     background-color: whitesmoke;
     width: 90%;
+    height:70vh;
     margin: auto;
+    padding: 5%;
 }
 .main-body {
     display: grid;

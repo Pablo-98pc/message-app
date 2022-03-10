@@ -166,7 +166,6 @@ export default function App(){
                     </Route> */}
                     </Routes>
                 </Router>
-            <h1>logeado</h1>
             </Context.Provider>
         }
         </>
