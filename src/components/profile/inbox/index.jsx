@@ -35,7 +35,8 @@ export default function Inbox() {
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div> : 
-      messages.map((message,index)=> <div className="card-body"key={index}> <Link to={`messages/message/${message.id}`} ><p className="card-text" >{message.subject}</p></Link>  </div>) }
+      messages.map((message,index)=> <div className="card-body"key={index}> <Link to={`message/${message.id}`} ><p className="card-text" >{message.subject}</p></Link>  </div>) }
+    <Link to={`/newmessage`}>new message</Link>
   </div>
      
 }
