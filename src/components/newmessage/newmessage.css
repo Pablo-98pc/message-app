@@ -1,5 +1,5 @@
 .main{
-    background-color: whitesmoke;
+    background-color: #d4d6e7;
     width: 90%;
     margin: auto;
 }
@@ -9,12 +9,23 @@
 }
 .form-header {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
     column-gap: 3rem;
+    margin-bottom:2vh;
+    padding:0.3rem;
+    row-gap: 0.6rem;
+}
+.form-header input {
+    background-color: var(--amarillo-mensajes);
+    padding: 0 0.8rem;
+    border-radius: 5px;
+    border:none;
+    height: 100%;
+    max-width: 80%;;
 }
 .form-message {
+    min-height: 40vh;;
     width:100%;
-    border: 1px solid black;
     background-color: white;
 }
 .form-button {
@@ -22,5 +33,7 @@
     place-content: center;
 }
 #textinput {
-    width: 100%;
+    width: 95%;
+    height: 100%;
+    border:none;
 }

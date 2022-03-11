@@ -11,8 +11,11 @@
  html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
+     box-sizing: border-box;
   }
-  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
   /* Sections
      ========================================================================== */
   
@@ -356,6 +359,7 @@
   /** ---- Global Styles  ---**/
 
   :root {
+    --amarillo-mensajes:#FAC710;
     --color1: #red;
     --color2: rgb(255, 94, 0);
     --color3: black;
@@ -365,6 +369,8 @@
     --color7: grey;
     --color8: #999999;
     --color10: #ffffff;
+    --headerbackground: #CFD1E6;
+    --headerbuttons:#B3B6DC;
   }
 
   h1 {
@@ -373,7 +379,9 @@
   h2,h3,h4,h5,h6{
     color:var(--color3)
   }
-  
+  a {
+    text-decoration: none;
+  }
   /**Custom code for buttons **/
 
   button{
@@ -392,6 +400,8 @@
     transition: ease-out 0.5s;
     -webkit-transition: ease-out 0.5s;
     -moz-transition: ease-out 0.5s;
+    height: fit-content;
+    width: fit-content;
   }
 
 button::after,

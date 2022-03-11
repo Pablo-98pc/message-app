@@ -13,11 +13,9 @@ import Conversation from './components/conversation';
 import Message from './components/message';
 import NewMessage from './components/newmessage';
 import PageNotFound from './components/404';
-import getProfileByUsername from './components/helpers/getProfileByUsername';
 import getProfileByUsernameLogin from './components/helpers/getProfileByUsernameLogin';
 import postNewUser from './components/helpers/postNewUser';
 export const Context = createContext(null);
-/* export const checkPassword = ; */
 
 export default function App(){
     const [passwordShown, setPasswordShown] = useState(false)
@@ -48,6 +46,8 @@ export default function App(){
             setNewuser(false);
             console.log(user);
             setLogged(true);
+            window.localStorage.setItem('userlogged',JSON.stringify({...newData.data}));  
+
         })
     },[user]);
 /*     const getData= useCallback(async () => {
@@ -64,14 +64,7 @@ export default function App(){
         'userlogged',JSON.stringify(user)
     )
 
-    useEffect(() => {
-        const loggedUserJSON = window.localStorage.getItem('userlogged');
-        if (loggedUserJSON) {
-            const user = JSON.parse(loggedUserJSON);
-            setUser(user);
-
-        }
-    }, []) esto seria para guardar en localstorage y para recuperarlo luego*/
+ esto seria para guardar en localstorage y para recuperarlo luego*/
 
     /* const getData= ((event) => {
         event.preventDefault();
@@ -91,10 +84,18 @@ export default function App(){
             setUser({...newData.data});
             setNewuser(true);
             setLogged(true);
-
+            window.localStorage.setItem('userlogged',JSON.stringify(...newData.data));  
         })
     },[user]);
 
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('userlogged');
+        if (loggedUserJSON) {
+            const user = JSON.parse(loggedUserJSON);
+            setUser(user);
+            setLogged(true);
+        }            
+    }, [user])
 /*     const checkPassword = () => {
         console.log('dentro de checkPassword');
         if (password === user.password || newUser) {
@@ -155,18 +156,13 @@ export default function App(){
                 <Router>
                     <Header/>
                     <Routes >
-                    {/* <Route path="/" element={<Welcome/>} /> */}
                     <Route exact path="/" element={<Profile />} />
                     <Route path="/conversation/:type/:id" element={<Conversation />} />
                     <Route path="/message/:id" element={<Message/>} />
                     <Route path="/newmessage" element={<NewMessage/>} />
                     <Route path="*" element={<PageNotFound />} />
-                    {/* <Route path="*">
-                        <Redirect to="/404" />
-                    </Route> */}
                     </Routes>
                 </Router>
-            <h1>logeado</h1>
             </Context.Provider>
         }
         </>
