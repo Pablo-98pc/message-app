@@ -20,7 +20,7 @@ export default function Message(){
             .then ((newData) => {
                 console.log(newData);
             })
-
+            answertext.current.value = "";
     }
     
     const getmessage= useCallback( async () => {
@@ -28,8 +28,6 @@ export default function Message(){
             .then ((newData) => {
                 console.log(newData);
                 setMessagedata(newData.data);
-                console.log(messageData);
-
         })
         console.log(messageData);
     },[id]);
@@ -64,7 +62,7 @@ export default function Message(){
                         </div>
                     </div>
                     <div className='respond'>
-                        <input type='text' placeholder ="texto" ref={answertext}></input>
+                        <input type='text' maxLength="300" placeholder ="texto" ref={answertext} required></input>
                         <button type='button' onClick={handleAnswer}>responder</button> {/* aqui debemos hacer post del mensaje */}
                     </div>
                 </div>

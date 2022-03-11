@@ -34,7 +34,9 @@ export default function NewMessage(){
             .then ((newData) => {
                 console.log(newData);
             })
-
+        message.current.value = "";
+        subject.current.value = "";
+        receiver.current.value = "";
     }
 
 /*     useEffect(async() => {
@@ -53,7 +55,7 @@ export default function NewMessage(){
                         <input type="text" placeholder="to" name ='touser' ref ={receiver} required/>
                     </div>
                     <div className='form-message'>
-                        <input id ="textinput" type="text" placeholder="Text" name ="message" ref ={message} required/>
+                        <input id ="textinput" type="text" maxLength="300" placeholder="Text" name ="message" ref ={message} required/>
                     </div>
                     <div className='form-button'>
                         <button onClick={handleAnswer}>Submit</button>
