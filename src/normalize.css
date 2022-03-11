@@ -359,6 +359,7 @@
   /** ---- Global Styles  ---**/
 
   :root {
+    --amarillo-mensajes:#FAC710;
     --color1: #red;
     --color2: rgb(255, 94, 0);
     --color3: black;
@@ -368,6 +369,8 @@
     --color7: grey;
     --color8: #999999;
     --color10: #ffffff;
+    --headerbackground: #CFD1E6;
+    --headerbuttons:#B3B6DC;
   }
 
   h1 {
@@ -397,6 +400,8 @@
     transition: ease-out 0.5s;
     -webkit-transition: ease-out 0.5s;
     -moz-transition: ease-out 0.5s;
+    height: fit-content;
+    width: fit-content;
   }
 
 button::after,

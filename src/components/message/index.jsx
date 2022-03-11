@@ -51,7 +51,7 @@ export default function Message(){
             messageData?
             <div className='main'>
                 <div class ="main-header">
-                    <h1>Conversaciones con {partner}</h1> {/* aqui solo estoy mostrando el id, deberiamos mostrar el username  */}
+                    <h2>Conversaciones con {partner}</h2> {/* aqui solo estoy mostrando el id, deberiamos mostrar el username  */}
                 </div>
                 <div className="main-body">
                     <div className="main-body-message">
