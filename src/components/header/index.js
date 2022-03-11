@@ -10,6 +10,7 @@ export default function Header(){
     const data =  useContext(Context); //logged user data
     const {user,setUser} = useContext(Context);
     const handleLogout = (()=> {
+        window.localStorage.removeItem('userlogged');
         setUser(null);
     })
     return(
