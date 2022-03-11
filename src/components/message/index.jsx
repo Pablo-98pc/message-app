@@ -1,7 +1,6 @@
 import './message.css'
-import { useState, useEffect, createContext , useRef, useCallback, useContext } from 'react';
-import { useParams , NavLink} from 'react-router-dom';
-import getData from '../helpers/getData';
+import { useState, useEffect , useRef, useCallback, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import getMessageById from'../helpers/getMessageById';
 import postNewMessage from '../helpers/postNewMessage';
 import {Context} from '../../App';
@@ -40,10 +39,11 @@ export default function Message(){
     },[]); */
 
     let partner;
+    let datetoshow;
     if (messageData) {
         partner = (data.id === messageData.from_user)? messageData.to_user : messageData.from_user;
-            console.log(messageData);
-            console.log(partner);
+        datetoshow = new Date(messageData.date);
+        datetoshow = datetoshow.toLocaleString();
     }
         return(
             messageData?
@@ -55,24 +55,17 @@ export default function Message(){
                     <div className="main-body-message">
                         <div className='message-header'>
                             <div><p>{messageData.subject}</p></div>
-                            <div><p>{messageData.date}</p></div> {/* {new Date().toLocaleTimeString()} */}
+                            <div><p>{datetoshow}</p></div> {/* {new Date().toLocaleTimeString()} */}
                         </div>
                         <div className='message-body'>
                             <p>{messageData.text}</p>
                         </div>
                     </div>
                     <div className='respond'>
-                        <input type='text' maxLength="300" placeholder ="texto" ref={answertext} required></input>
+                        <textarea type='text' maxLength="300" placeholder ="texto" ref={answertext} required/>
                         <button type='button' onClick={handleAnswer}>responder</button> {/* aqui debemos hacer post del mensaje */}
                     </div>
                 </div>
-{/*                 from_user: data.id
-                to_user: partner
-                subject: messageData.subject
-                data: Date.now();
-                text: answertext.current.value
-                tambien debemos saber si es grupo o no. */}
-
             </div> : <h1>Charging</h1>
         )
 

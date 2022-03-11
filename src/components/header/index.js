@@ -1,9 +1,7 @@
 import './header.css'
-import { useState, useEffect, createContext , useRef, useCallback, useContext } from 'react';
-import { useParams , NavLink} from 'react-router-dom';
-import getData from '../helpers/getData';
-import getMessageById from'../helpers/getMessageById';
-import postNewMessage from '../helpers/postNewMessage';
+import { useContext } from 'react';
+import { NavLink} from 'react-router-dom';
+
 import {Context} from '../../App';
 
 export default function Header(){

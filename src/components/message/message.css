@@ -2,6 +2,7 @@
     background-color: whitesmoke;
     width: 90%;
     height:80vh;
+    min-height: min-content;
     margin: auto;
     padding: 5%;
 }
@@ -23,6 +24,7 @@
     background-color: var(--amarillo-mensajes);
     padding: 0 0.8rem;
     border-radius: 5px;
+    max-width: 90%;
 }
 .message-body {
     height: 20vh;
@@ -38,7 +40,7 @@
     align-content:flex-start;
     
 }
-.respond input {
+.respond textarea {
     width:80%;
     height:20vh;
     border:none;
