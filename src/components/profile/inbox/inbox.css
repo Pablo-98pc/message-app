@@ -3,13 +3,16 @@
 }
 .card {
     border: 1px solid bisque;
+    background-color: var(--main);
+    padding: 2rem;
 }
 .card-body{
     background-color: var(--amarillo-mensajes);
     border: 1px solid goldenrod;
+    margin-top: 0.5rem;
 }
 .card-body:hover{
-    background-color: rgb(255, 255, 72,0.2)
+    background-color: var(--color2);
 }
 .card-text  {
     text-decoration: none;
