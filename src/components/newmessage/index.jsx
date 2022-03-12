@@ -4,26 +4,14 @@ import postNewMessage from '../helpers/postNewMessage';
 import {Context} from '../../App';
 
 export default function NewMessage(){
-/*     const {message, setMessage} = useState('');
-    const {subject, setSubject} = useState('');
-    const {receiver, setReceiver} = useState(''); */
+
     const data =  useContext(Context); //logged user data
     const type = 'user';
     const subject = useRef();
     const message = useRef();
     const receiver = useRef();
 
-/*     const handleAnswer = async (event) => {
-        event.preventDefault();
-        let bodytosend = {groupmessage:false,text: message, subject: subject, 
-            from_user: data.id, to_user: receiver, date:new Date()};
-        console.log(bodytosend);
-        await postNewMessage(bodytosend,type) 
-            .then ((newData) => {
-                console.log(newData);
-            })
 
-    } */
 
     const handleAnswer = async (event) => {
         let bodytosend = {groupmessage:false,text: message.current.value, subject: subject.current.value, 
@@ -38,13 +26,6 @@ export default function NewMessage(){
         receiver.current.value = "";
     }
 
-/*     useEffect(async() => {
-        await getmessage();
-    },[]); */
-
-/*     useEffect(() => {
-        getmessage();
-    },[]); */
 
           return(
             <div className='main'>
@@ -60,18 +41,6 @@ export default function NewMessage(){
                         <button onClick={handleAnswer}>Submit</button>
                     </div>
                 </div>
-{/*                 <form class="new-message" onSubmit={handleAnswer}>
-                    <div className='form-header'>
-                        <input type="text" placeholder="subject" name ='subject' onChange={({event})=> setSubject(event.target.value)}/>
-                        <input type="text" placeholder="to" name ='touser' onChange={({event})=> setReceiver(event.target.value)}/>
-                    </div>
-                    <div className='form-message'>
-                        <input type="text" placeholder="Text" name ="message" onChange={({event})=> setMessage(event.target.value)}/>
-                    </div>
-                    <div className='form-button'>
-                        <input type="buttón">Submmit</input>
-                    </div>
-                </form> */}
             </div>
         )
     }

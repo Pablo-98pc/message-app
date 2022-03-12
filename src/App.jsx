@@ -50,31 +50,7 @@ export default function App(){
 
         })
     },[user]);
-/*     const getData= useCallback(async () => {
-        let usertosearch = userprueba.current.value;
-        await getProfileByUsername(usertosearch)
-            .then ((newData) => {
-            setUser({...newData.data});
-            setNewuser(false);
-            console.log(user);
-        })
-    },[user]); */
 
-/*     window.localStorage.setItem(
-        'userlogged',JSON.stringify(user)
-    )
-
- esto seria para guardar en localstorage y para recuperarlo luego*/
-
-    /* const getData= ((event) => {
-        event.preventDefault();
-        console.log(event);
-         getProfileByUsername(username)
-            .then ((newData) => {
-            setUser({...newData.data});
-            setNewuser(false);
-        })
-    },[user]); */
 
     const postData= useCallback(async () => {
         let body = {username: bodyusername.current.value, last_name: bodylastname.current.value, 
@@ -96,19 +72,6 @@ export default function App(){
             setLogged(true);
         }            
     }, [])
-/*     const checkPassword = () => {
-        console.log('dentro de checkPassword');
-        if (password === user.password || newUser) {
-        console.log('contraseña correcta');
-        setLogged(!logged);
-        }
-    }; 
-
-    useEffect (()=> {
-        if (user) {
-        checkPassword();
-        }
-    }, [user,newUser]); */
 
     return(<> 
         {!logged? 
@@ -117,15 +80,6 @@ export default function App(){
                     <h1>Welcome</h1>
                     <div className='buttons'>
                     <Popup trigger={<button> Log in</button>} position="right center">
-{/*                         <form onSubmit={getData}>
-                            <input id="username" ref= {userprueba} value={username} type="text" placeholder="username" 
-                            onChange={({event}) => setUsername(event.target.value)}></input>
-                            <input type={passwordShown ? "text" : "password"} placeholder='password' value={password}
-                            onChange={({event}) => setPassword(event.target.value)}></input>
-                            <button onClick={togglePassword}>Show Password</button>
-                            <span><a href='http://localhost:3000/%27%3E'>Forgot your password?</a></span>
-                            <button type="submit">LOG IN</button>
-                        </form> */}
                         <div>
                             <input id="username" ref= {userprueba} type="text" placeholder="username" onChange={(async(event) => await setUsername(event.target.value))}></input>
                             <input type={passwordShown ? "text" : "password"} placeholder='password' ref={passwordlogin} onChange={event => setPassword(event.target.value)}></input>
