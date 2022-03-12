@@ -1,0 +1,39 @@
+.main{
+    background-color: var(--main);
+    width: 90%;
+    margin: auto;
+}
+.new-message {
+        width:70%;
+    margin: auto;
+}
+.form-header {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
+    column-gap: 3rem;
+    margin-bottom:2vh;
+    padding:0.3rem;
+    row-gap: 0.6rem;
+}
+.form-header input {
+    background-color: var(--amarillo-mensajes);
+    padding: 0 0.8rem;
+    border-radius: 5px;
+    border:none;
+    height: 100%;
+    max-width: 80%;;
+}
+.form-message {
+    min-height: 40vh;;
+    width:100%;
+    background-color: white;
+}
+.form-button {
+    display: grid;
+    place-content: center;
+}
+#textinput {
+    width: 95%;
+    height: 100%;
+    border:none;
+}

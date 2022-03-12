@@ -1,4 +1,47 @@
 .main{
-    background-color: whitesmoke;
+    background-color: var(--main);
+    width: 90%;
+    height:80vh;
+    min-height: min-content;
+    margin: auto;
+    padding: 5%;
+}
 
+.main-body {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(320px, 1fr) );
+    height: 100%;
+}
+
+.message-header {
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(190px, 1fr) );
+    column-gap: 3rem;
+    margin-bottom:1rem;
+    row-gap:0.6rem;
+}
+.message-header div {
+    background-color: var(--amarillo-mensajes);
+    padding: 0 0.8rem;
+    border-radius: 5px;
+    max-width: 90%;
+}
+.message-body {
+    height: 20vh;
+    background-color:var(--color10);
+    padding:0.5rem;
+}
+.respond {
+    display: grid;
+    grid-template-columns: 1fr;
+    width:100%;
+    margin-top:7vh;
+    justify-items:center;
+    align-content:flex-start;
+    
+}
+.respond textarea {
+    width:80%;
+    height:20vh;
+    border:none;
 }

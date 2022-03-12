@@ -49,3 +49,17 @@
   [data-popup='tooltip'].popup-overlay {
     background: transparent;
   }
+
+  @media only screen and (max-width: 667px) {
+    .welcome{
+      flex-direction: column-reverse;
+    }
+    .welcome-info{
+      width: 100%;
+    }.welcome-photo{
+      height: 400px;
+    }.image{
+        object-fit: fill;
+    }
+
+  }

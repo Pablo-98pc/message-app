@@ -1,0 +1,21 @@
+
+.profilePicture{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.perfilImg{
+    cursor: pointer;
+}
+h1{
+    color:black !important
+}
+.container {
+    background: var(--headerbackground);
+    border-right: 1px solid var( --color8);
+    border-top: 1px solid var( --color8);
+}
+.offCanvasBody{
+    display: flex;
+    flex-direction: row;
+}
