@@ -91,8 +91,8 @@ export default function App(){
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('userlogged');
         if (loggedUserJSON) {
-            const usertoLog = JSON.parse(loggedUserJSON);
-            setUser(usertoLog);
+            const loggedUser= JSON.parse(loggedUserJSON);
+            setUser(loggedUser);
             setLogged(true);
         }            
     }, [])

@@ -1,0 +1,23 @@
+.card-header{
+    text-align: center;
+}
+.card {
+    border: 1px solid bisque;
+}
+.card-body{
+    background-color: var(--amarillo-mensajes);
+    border: 1px solid goldenrod;
+}
+.card-body:hover{
+    background-color: rgb(255, 255, 72,0.2)
+}
+.card-text  {
+    text-decoration: none;
+    color: black;
+}
+.messageButton {
+    text-align: center;
+    padding-top: 20px;
+    text-decoration: none;
+    color: black;
+}

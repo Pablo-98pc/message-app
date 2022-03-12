@@ -1,13 +1,12 @@
 import { useEffect, useState , useContext} from "react"
 import axios from "axios";
-import { useParams } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import {Context} from '../../../App';
+import './inbox.css'
  
 export default function Inbox() {
     const [messages,setMessages] = useState([])
     const [isLoading,setIsLoading] = useState(true);
-    const {id} = useParams();
     const dataprueba = useContext(Context);
 
     useEffect(()=>{
@@ -27,18 +26,18 @@ export default function Inbox() {
         FetchData()
         
 
-    },[id])
-    return <div className="card bg-light mb-3"style={{maxWidth: "40%",position:"inherit",margin:'auto',maxHeight:'70%'}} >
-    <div className="card-header text-center" >
+    },[dataprueba])
+    return <><div className="card"style={{maxWidth: "40%",position:"inherit",margin:'auto',maxHeight:'70%'}} >
+    <div className="card-header" >
         Last Messages
     </div>
-    {isLoading ? <div class="text-center">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+    {isLoading ? <div className="text-center">
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
         </div> : 
-      messages.map((message,index)=> <div className="card-body"key={index}> <Link to={`message/${message.id}`} ><p className="card-text" >{message.subject}</p></Link>  </div>) }
-    <Link to={`/newmessage`}>new message</Link>
+      messages.map((message,index)=> <div className="card-body"key={index}> <Link to={`message/${message.id}`} ><p className="card-text" >subject : {message.subject}</p></Link>  </div>) }
+   
   </div>
-     
+    <div className="messageButton"><Link to={`/newmessage`}><button>New Message</button></Link></div></>
 }

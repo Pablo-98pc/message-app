@@ -4,6 +4,8 @@ import Avatar from './avatar/index'
 import Inbox from './inbox';
 
 
+
+
 export default function Profile(){
     return<>
             <Avatar/>

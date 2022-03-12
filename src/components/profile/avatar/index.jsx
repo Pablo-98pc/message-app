@@ -1,25 +1,26 @@
 import './avatar.css'
 import { useEffect, useState , useContext } from 'react'
-/* import Swal from 'sweetalert2' */
 import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
 import {Context} from '../../../App';
+import PerfilPic from '../../../images/perfilmessage.png'
 
 
 export default function Avatar () {
-    const {id} = useParams();
-    const [userName,setUserName] = useState(undefined) 
+    const [userInfo,setUserInfo] = useState(undefined) 
     const [isMenuOpened,setIsMenuOpened] = useState(false)
     const [isLoading,setIsLoading] = useState(true);
     const datalogged = useContext(Context);
-    console.log(datalogged);
+    
      useEffect(()=> {
+         console.log(datalogged)
         async function FetchData(){
             try {
             const resp = await axios.get(`http://localhost:3001/api/users/${datalogged.id}`);
-            let data = resp.data
-            setUserName(data.nick);
+            console.log(datalogged)
+            let user = resp.data
+            setUserInfo(user);
+            console.log(userInfo)
             setIsLoading(false);
             }
             catch(err){
@@ -30,26 +31,10 @@ export default function Avatar () {
         FetchData()
 
 
-    },[userName,id]) 
+    },[datalogged]) 
 
 
-  /* Pop-up menu to set description of user through sweetalert library*/
-   /*   const handleSetDescription= () => {Swal.fire( {
-        title: 'Enter your description',
-        input:"text",
-        inputLabel:'Your description',
-        inputValidator : (value) => {
-            if(value.length > 150){
-                return 'max 150 characters'
-            } else if(value === ''){
-                return 'set a description'
-            }
-        }
-    }).then((result)=>{
-            if(result.value !== undefined)
-            setDescription(result.value);
-        }
-    )}       */
+
     /* set the status of the profile menu*/
     const handleMenu = () => {
         setIsMenuOpened(!isMenuOpened)
@@ -65,21 +50,20 @@ export default function Avatar () {
       >
         <OffCanvasBody
          
-        >
-         <img  alt='Profile pic' className='perfilImg' src='https://cdn-icons.flaticon.com/png/128/3736/premium/3736502.png?token=exp=1645566551~hmac=f3d182445ba0fb59eb6828592161c149' onClick={handleMenu}></img>
+        > <div className='offCanvasBody'>
+         <img  alt='Profile pic' className='perfilImg' height='40px' width='40px' src={PerfilPic} onClick={handleMenu}></img></div>
         </OffCanvasBody>
       
         <OffCanvasMenu className='card' style={{height:'100vh'}}>
-        <div className="container bg-light" style={{height:'100vh'}}>
+        <div className="container " style={{height:'100vh'}}>
         <div className="profilePicture">
-            <img src="" alt="imagen de perfil"></img>
+            <img height='40px' width='40px' src={PerfilPic} alt="imagen de perfil"></img>
         </div>
         <div className="avatarInfo">{isLoading ? <div class="text-center">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-        </div> : <><h1>{userName}</h1><div className="description">
-                {/* {description} <button  onClick={handleSetDescription}>edit</button> */}
+        </div> : <><h3> userName : {userInfo.username}</h3><p> email : {userInfo.email}</p><div className="description">
             </div><button onClick={handleMenu}>Cerrar</button></> }
              </div>
     </div> 
