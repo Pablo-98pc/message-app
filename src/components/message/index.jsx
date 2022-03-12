@@ -30,13 +30,10 @@ export default function Message(){
         })
         console.log(messageData);
     },[id]);
+
     useEffect(async () => {
         await getmessage();
     },[]);
-    
-    /*     useEffect(() => {
-        getmessage();
-    },[]); */
 
     let partner;
     let datetoshow;
@@ -62,8 +59,8 @@ export default function Message(){
                         </div>
                     </div>
                     <div className='respond'>
-                        <textarea type='text' maxLength="300" placeholder ="texto" ref={answertext} required/>
-                        <button type='button' onClick={handleAnswer}>responder</button> {/* aqui debemos hacer post del mensaje */}
+                        <textarea type='text' maxLength="300" placeholder ="answer message" ref={answertext} required/>
+                        <button type='button' onClick={handleAnswer}>submit</button> {/* aqui debemos hacer post del mensaje */}
                     </div>
                 </div>
             </div> : <h1>Charging</h1>
