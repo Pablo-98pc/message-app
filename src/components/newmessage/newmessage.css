@@ -1,5 +1,5 @@
 .main{
-    background-color: #d4d6e7;
+    background-color: var(--main);
     width: 90%;
     margin: auto;
 }

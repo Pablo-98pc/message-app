@@ -91,11 +91,11 @@ export default function App(){
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('userlogged');
         if (loggedUserJSON) {
-            const user = JSON.parse(loggedUserJSON);
-            setUser(user);
+            const usertoLog = JSON.parse(loggedUserJSON);
+            setUser(usertoLog);
             setLogged(true);
         }            
-    }, [user])
+    }, [])
 /*     const checkPassword = () => {
         console.log('dentro de checkPassword');
         if (password === user.password || newUser) {
