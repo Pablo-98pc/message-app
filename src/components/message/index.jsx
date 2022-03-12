@@ -46,13 +46,13 @@ export default function Message(){
             messageData?
             <div className='main'>
                 <div class ="main-header">
-                    <h2>Conversaciones con {partner}</h2> {/* aqui solo estoy mostrando el id, deberiamos mostrar el username  */}
+                    <h2>Conversaciones con {partner}</h2> 
                 </div>
                 <div className="main-body">
                     <div className="main-body-message">
                         <div className='message-header'>
                             <div><p>{messageData.subject}</p></div>
-                            <div><p>{datetoshow}</p></div> {/* {new Date().toLocaleTimeString()} */}
+                            <div><p>{datetoshow}</p></div> 
                         </div>
                         <div className='message-body'>
                             <p>{messageData.text}</p>
@@ -60,7 +60,7 @@ export default function Message(){
                     </div>
                     <div className='respond'>
                         <textarea type='text' maxLength="300" placeholder ="answer message" ref={answertext} required/>
-                        <button type='button' onClick={handleAnswer}>submit</button> {/* aqui debemos hacer post del mensaje */}
+                        <button type='button' onClick={handleAnswer}>submit</button> 
                     </div>
                 </div>
             </div> : <h1>Charging</h1>
