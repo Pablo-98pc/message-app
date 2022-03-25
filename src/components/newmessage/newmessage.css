@@ -1,39 +1,52 @@
-.main{
-    background-color: var(--main);
-    width: 90%;
-    margin: auto;
+.main {
+  background-color: var(--main);
+  width: 90%;
+  margin: auto;
 }
 .new-message {
-        width:70%;
-    margin: auto;
+  width: 70%;
+  margin: auto;
 }
 .form-header {
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(200px, 1fr) );
-    column-gap: 3rem;
-    margin-bottom:2vh;
-    padding:0.3rem;
-    row-gap: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  -moz-column-gap: 3rem;
+       column-gap: 3rem;
+  margin-bottom: 2vh;
+  padding: 0.3rem;
+  row-gap: 0.6rem;
 }
 .form-header input {
-    background-color: var(--amarillo-mensajes);
-    padding: 0 0.8rem;
-    border-radius: 5px;
-    border:none;
-    height: 100%;
-    max-width: 80%;;
+  background-color: var(--amarillo-mensajes);
+  padding: 0 0.8rem;
+  border-radius: 5px;
+  border: none;
+  height: 100%;
+  max-width: 80%;
 }
 .form-message {
-    min-height: 40vh;;
-    width:100%;
-    background-color: white;
+  min-height: 40vh;
+  width: 100%;
+  background-color: white;
 }
 .form-button {
-    display: grid;
-    place-content: center;
+  display: grid;
+  place-content: center;
 }
 #textinput {
-    width: 95%;
-    height: 100%;
-    border:none;
+  width: 95%;
+  height: 100%;
+  border: none;
+}
+
+.form-button button {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f9ce3e+0,f7d154+14,68ffa2+100 */
+  background: rgb(249, 206, 62); /* Old browsers */ /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    rgba(249, 206, 62, 1) 0%,
+    rgba(247, 209, 84, 1) 14%,
+    rgba(104, 255, 162, 1) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 ); /* IE6-9 */
 }

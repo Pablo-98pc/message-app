@@ -1,93 +1,91 @@
 .overlay {
-    visibility: hidden;
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    transition: opacity 500ms;
-  }
-  .popup {
-    margin: 70px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    width: 30%;
-    position: relative;
-    transition: all 5s ease-in-out;
-  }
-
-  .popup h2 {
-    margin-top: 0;
-    color: #333;
-    font-family: Tahoma, Arial, sans-serif;
-  }
-  .popup .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-  }
-  .popup .close:hover {
-    cursor: pointer;
-    color: #000;
-  }
-  .popup .content {
-    max-height: 30%;
-    overflow: auto;
-  }
-
-  @media screen and (max-width: 700px) {
-    .popup {
-      width: 70%;
-    }
-  }
-
-  /* ------- register -----------*/
-
-  .main{
-    background-color: #acb0e6;
-
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+}
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
 }
 
-  /* ------- welcome -----------*/
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  cursor: pointer;
+  color: #000;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
 
-.welcome{
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 70%;
+  }
+}
+
+/* ------- register -----------*/
+
+.main {
+  background-color: #2d2d2d;
+}
+
+/* ------- welcome -----------*/
+
+.welcome {
   display: flex;
   flex-direction: row;
   background-color: antiquewhite;
   height: 100vh;
 }
-.welcome-info{
+.welcome-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin:0px;
+  margin: 0px;
   height: 100vh;
   width: 50%;
   background-color: rgba(0, 0, 0, 0.082);
 }
-.welcome-photo{
+.welcome-photo {
   height: 100vh;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-
 }
-.image{
+.image {
   height: 900px;
-  object-fit: fill;
+  -o-object-fit: fill;
+     object-fit: fill;
 }
-.buttons{
+.buttons {
   display: inline;
-
 }
 .popup-content {
   margin: auto;
@@ -98,7 +96,7 @@
 .popup-arrow {
   color: rgb(255, 255, 255);
 }
-[role='tooltip'].popup-content {
+[role="tooltip"].popup-content {
   width: 200px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
 }
@@ -106,20 +104,22 @@
 .popup-overlay {
   background: rgba(0, 0, 0, 0.5);
 }
-[data-popup='tooltip'].popup-overlay {
+[data-popup="tooltip"].popup-overlay {
   background: transparent;
 }
 
 @media only screen and (max-width: 667px) {
-  .welcome{
+  .welcome {
     flex-direction: column-reverse;
   }
-  .welcome-info{
+  .welcome-info {
     width: 100%;
-  }.welcome-photo{
-    height: 400px;
-  }.image{
-      object-fit: fill;
   }
-
+  .welcome-photo {
+    height: 400px;
+  }
+  .image {
+    -o-object-fit: fill;
+       object-fit: fill;
+  }
 }

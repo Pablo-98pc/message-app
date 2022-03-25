@@ -1,21 +1,24 @@
-
-.profilePicture{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.profilePicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.perfilImg{
-    cursor: pointer;
+.perfilImg {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
 }
-h1{
-    color:black !important
+h1 {
+  color: black !important;
 }
 .container {
-    background: var(--headerbackground);
-    border-right: 1px solid var( --color8);
-    border-top: 1px solid var( --color8);
+  background: var(--main);
+  border-right: 1px solid var(--color8);
+  border-top: 1px solid var(--color8);
 }
-.offCanvasBody{
-    display: flex;
-    flex-direction: row;
+.offCanvasBody {
+  display: flex;
+  flex-direction: row;
+  height: 61px;
+  width: 61px;
 }
