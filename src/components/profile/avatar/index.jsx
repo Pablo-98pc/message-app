@@ -79,6 +79,9 @@ export default function Avatar() {
                 <div className="text-center">
                   <div className="spinner-border" role="status">
                     <span className="visually-hidden">Loading...</span>
+                    <NavLink className="logout" to={`/`} onClick={handleLogout}>
+                      logout
+                    </NavLink>
                   </div>
                 </div>
               ) : (

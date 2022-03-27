@@ -79,11 +79,8 @@ export default function Inbox() {
                   </p>
                 </div>
               </div>
-              <div>
-                <Icon
-                  className="card-arrow-right"
-                  icon="akar-icons:chevron-right"
-                ></Icon>
+              <div className="card-arrow-right">
+                <Icon icon="akar-icons:chevron-right"></Icon>
                 <p>{new Date(message.date).toTimeString().slice(0, 5)}</p>
               </div>
             </div>

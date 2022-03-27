@@ -27,7 +27,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #141414;
+  background-color: #111111;
   position: relative;
 }
 
@@ -364,7 +364,7 @@ template {
   --amarillo-mensajes: #fac710;
   --color1: #red;
   --color2: rgb(255, 94, 0);
-  --color3: black;
+  --color3: #111111;
   --color4: rgb(45, 11, 77);
   --color5: green;
   --color6: #00803a;
@@ -376,6 +376,7 @@ template {
   --main: #2d2d2d;
 }
 
+p,
 h1 {
   color: var(--color10);
 }
@@ -384,7 +385,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--color3);
+  color: var(--color10);
 }
 a {
   text-decoration: none;

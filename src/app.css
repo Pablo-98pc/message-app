@@ -10,12 +10,12 @@
   transition: opacity 500ms;
 }
 .popup {
-  margin: 70px auto;
+  /* margin: 70px auto; */
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
-  position: relative;
+  /* width: 300px; */
+  /* position: relative; */
   transition: all 5s ease-in-out;
 }
 
@@ -26,8 +26,8 @@
 }
 .popup .close {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  /* top: 20px; */
+  /* right: 30px; */
   transition: all 200ms;
   font-size: 30px;
   font-weight: bold;
@@ -39,13 +39,13 @@
   color: #000;
 }
 .popup .content {
-  max-height: 30%;
-  overflow: auto;
+  max-height: 300%;
+  /* overflow: auto; */
 }
 
 @media screen and (max-width: 700px) {
   .popup {
-    width: 70%;
+    /* width: 70%; */
   }
 }
 
@@ -57,12 +57,14 @@
 
 /* ------- welcome -----------*/
 
-.welcome {
-  display: flex;
-  flex-direction: row;
-  background-color: antiquewhite;
+.containerMain {
   height: 100vh;
+  width: 100vw;
+
+  /* margin: auto; */
+  text-align: center;
 }
+
 .welcome-info {
   display: flex;
   flex-direction: column;
@@ -71,7 +73,7 @@
   margin: 0px;
   height: 100vh;
   width: 50%;
-  background-color: rgba(0, 0, 0, 0.082);
+  background-color: var(--color3);
 }
 .welcome-photo {
   height: 100vh;
@@ -82,30 +84,43 @@
 .image {
   height: 900px;
   -o-object-fit: fill;
-     object-fit: fill;
+  object-fit: fill;
 }
 .buttons {
   display: inline;
 }
 .popup-content {
-  margin: auto;
-  background: rgb(255, 255, 255);
-  width: 50%;
-  padding: 5px;
+  /* margin: auto; */
+  /* background: rgb(255, 255, 255); */
+  /* width: 100%; */
+  /* padding: 5px; */
 }
 .popup-arrow {
-  color: rgb(255, 255, 255);
+  /* color: rgb(255, 255, 255); */
+  display: none;
 }
-[role="tooltip"].popup-content {
-  width: 200px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+#popup-root .popup-content {
+  width: 500px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: var(--main);
+  border: none;
+}
+.containerLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .popup-overlay {
   background: rgba(0, 0, 0, 0.5);
 }
 [data-popup="tooltip"].popup-overlay {
-  background: transparent;
+  /* width: 500px; */
+
+  /* background: transparent; */
 }
 
 @media only screen and (max-width: 667px) {
@@ -120,6 +135,6 @@
   }
   .image {
     -o-object-fit: fill;
-       object-fit: fill;
+    object-fit: fill;
   }
 }
