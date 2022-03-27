@@ -46,7 +46,6 @@ export default function App() {
       (newData) => {
         setUser({ ...newData.data });
         setNewuser(false);
-        console.log(user);
         setLogged(true);
         window.localStorage.setItem(
           "userlogged",
