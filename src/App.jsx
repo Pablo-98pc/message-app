@@ -44,10 +44,8 @@ export default function App() {
     let passwordtocheck = passwordlogin.current.value;
     await getProfileByUsernameLogin(usertosearch, passwordtocheck).then(
       (newData) => {
-        console.log("newdataaaaaaaaaaa", newData);
         setUser({ ...newData.data });
         setNewuser(false);
-        console.log(user);
         setLogged(true);
         window.localStorage.setItem(
           "userlogged",
