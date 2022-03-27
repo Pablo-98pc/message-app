@@ -5,6 +5,7 @@ import "./inbox.css";
 import getMessages from "../../helpers/getMessages";
 import getMessagesBetween from "../../helpers/getMessagesBetween";
 import { Icon } from "@iconify/react";
+import Socket from '../../../utils/Socket'
 
 export default function Inbox() {
   const [messages, setMessages] = useState([]);
@@ -52,7 +53,21 @@ export default function Inbox() {
 
   useEffect(() => {
     getmessage();
+    setupSocket();
   }, [dataprueba]);
+
+  //Function that prepares the websocket connection.
+  const setupSocket = ()=>{
+    //conexionSocket para definir id
+    console.log("Definiendo socket")
+    Socket.emit("connected",idfortest)
+    Socket.on("news",async()=>{
+        console.log('Haz update.....');
+        await getmessage();
+    })
+
+}
+
 
   return (
     <>
