@@ -4,7 +4,6 @@ import { OffCanvas, OffCanvasMenu, OffCanvasBody } from "react-offcanvas";
 import axios from "axios";
 import { Context } from "../../../App";
 import PerfilPic from "../../../images/perfilmessage.png";
-
 import { NavLink } from "react-router-dom";
 
 export default function Avatar() {
@@ -46,6 +45,7 @@ export default function Avatar() {
       <OffCanvas
         width={300}
         transitionDuration={300}
+        className="hola"
         effect={"overlay"}
         isMenuOpened={isMenuOpened}
         position={"left"}
@@ -64,8 +64,8 @@ export default function Avatar() {
           </div>
         </OffCanvasBody>
 
-        <OffCanvasMenu className="card" style={{ height: "100vh" }}>
-          <div className="container " style={{ height: "100vh" }}>
+        <OffCanvasMenu className="cardProfile" style={{ height: "100vh" }}>
+          <div className="containerProfile " style={{ height: "100vh" }}>
             <div className="profilePicture">
               <img
                 height="40px"
@@ -89,13 +89,15 @@ export default function Avatar() {
                   <NavLink className="logout" to={`/`} onClick={handleLogout}>
                     logout
                   </NavLink>
-                  <button onClick={handleMenu}>Cerrar</button>
                 </>
               )}
             </div>
           </div>
         </OffCanvasMenu>
       </OffCanvas>
+      {isMenuOpened ? (
+        <div className="close-profile" onClick={handleMenu}></div>
+      ) : null}
     </div>
   );
 }

@@ -11,14 +11,54 @@
 h1 {
   color: black !important;
 }
-.container {
-  background: var(--main);
-  border-right: 1px solid var(--color8);
-  border-top: 1px solid var(--color8);
-}
-.offCanvasBody {
+
+.perfilImg {
   display: flex;
   flex-direction: row;
   height: 61px;
   width: 61px;
+}
+.close-profile {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.589);
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -webkit-animation-name: open;
+  animation-name: open;
+}
+@-webkit-keyframes open {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.335);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.589);
+  }
+}
+@keyframes open {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.335);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.589);
+  }
+}
+.cardProfile {
+  z-index: 100;
+}
+
+.containerProfile {
+  background-color: var(--main);
 }

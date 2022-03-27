@@ -1,7 +1,29 @@
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  min-height: 110px;
+  height: 110px;
   padding: 0 20px 0 20px;
+}
+.container-profile {
+  max-width: 500px;
+  z-index: 1;
+}
+@media (min-width: 450px) {
+  .container-profile {
+    max-width: 45vw;
+  }
+}
+@media (min-width: 900px) {
+  .container-profile {
+    max-width: 35vw;
+  }
+}
+.card-flex {
+  display: flex;
+  align-items: center;
+}
+h2 {
+  color: #fff;
+  text-align: center;
 }

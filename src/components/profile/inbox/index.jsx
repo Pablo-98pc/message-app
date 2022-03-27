@@ -4,19 +4,26 @@ import { Context } from "../../../App";
 import "./inbox.css";
 import getMessages from "../../helpers/getMessages";
 import getMessagesBetween from "../../helpers/getMessagesBetween";
+import { Icon } from "@iconify/react";
 
 export default function Inbox() {
   const [messages, setMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const dataprueba = useContext(Context);
-
   const idfortest = dataprueba.id;
-  const getmessage = useCallback(async () => {
-    const conversarions = await getMessages(idfortest, "users");
 
+  const getmessage = useCallback(async () => {
+    // params:user id
+    // return : conversation id , name
+    // I bring all the conversations in which the id user appears as sender or recipient
+    const conversations = await getMessages(idfortest);
+
+    // params:conversations id,name
+    // return:conversations name, date, messages
+    // fetch all the messages you have with each user you have a conversation with
     const conversationMessages = await Promise.all(
-      conversarions.data.map(async (item) => {
-        const data = await getMessagesBetween(idfortest, item.id, "withuser");
+      conversations.data.map(async (item) => {
+        const data = await getMessagesBetween(idfortest, item.id);
         const finalConversations = {
           name: item.username,
           date: data.data.rows[0].date,
@@ -26,7 +33,8 @@ export default function Inbox() {
       }),
     );
 
-    const orderMessages = conversationMessages.sort(function (a, b) {
+    // order conversations for descending date
+    const orderConversations = conversationMessages.sort(function (a, b) {
       const nameA = a.date;
       const nameB = b.date;
       if (nameA > nameB) {
@@ -37,9 +45,8 @@ export default function Inbox() {
       }
       return 0;
     });
-    console.log("conversation", orderMessages);
 
-    setMessages(orderMessages);
+    setMessages(orderConversations);
     setIsLoading(false);
   }, [idfortest, messages]);
 
@@ -59,11 +66,25 @@ export default function Inbox() {
         ) : (
           messages?.map((message, index) => (
             <div className="card-body" key={index}>
-              <div onClick={() => console.log(message)}>
-                <p className="card-text">{message.name}</p>
-                <p className="card-last-messsage-text">
-                  {message.conversation[0].text}
-                </p>
+              <div className="card-flex">
+                <div className="card-container-pic">
+                  <img src="" alt="" />
+                </div>
+                <div className="card-text" onClick={() => console.log(message)}>
+                  <p className="card-name">{message.name}</p>
+                  <p className="card-last-messsage-text">
+                    {message.conversation[0].text.length > 20
+                      ? message.conversation[0].text.slice(0, 20) + " ..."
+                      : message.conversation[0].text}
+                  </p>
+                </div>
+              </div>
+              <div>
+                <Icon
+                  className="card-arrow-right"
+                  icon="akar-icons:chevron-right"
+                ></Icon>
+                <p>{new Date(message.date).toTimeString().slice(0, 5)}</p>
               </div>
             </div>
           ))

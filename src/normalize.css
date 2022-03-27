@@ -28,6 +28,7 @@ html {
 body {
   margin: 0;
   background-color: #141414;
+  position: relative;
 }
 
 /**
