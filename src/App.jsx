@@ -10,7 +10,6 @@ import "./app.css";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import image from "./image.jpg";
-import Header from "./components/header";
 import Profile from "./components/profile/index";
 import Conversation from "./components/conversation";
 import Message from "./components/message";
@@ -45,19 +44,16 @@ export default function App() {
     let passwordtocheck = passwordlogin.current.value;
     await getProfileByUsernameLogin(usertosearch, passwordtocheck).then(
       (newData) => {
-        if (newData !== null) {
+        console.log("newdataaaaaaaaaaa", newData);
         setUser({ ...newData.data });
         setNewuser(false);
         console.log(user);
         setLogged(true);
         window.localStorage.setItem(
           "userlogged",
-          JSON.stringify({ ...newData.data })
+          JSON.stringify({ ...newData.data }),
         );
-        }else{
-          alert("Login incorrecto")
-        }
-      }
+      },
     );
   }, [user]);
 
@@ -70,16 +66,13 @@ export default function App() {
       password: bodypassword.current.value,
     };
     await postNewUser(body).then((newData) => {
-      //Verificamos si el login es correcto
-        setUser({ ...newData.data });
-        setNewuser(true);
-        setLogged(true);
-        window.localStorage.setItem(
-          "userlogged",
-          JSON.stringify(...newData.data)
-        );
-    }).catch(e=>{
-        console.log("error login",e);
+      setUser({ ...newData.data });
+      setNewuser(true);
+      setLogged(true);
+      window.localStorage.setItem(
+        "userlogged",
+        JSON.stringify(...newData.data),
+      );
     });
   }, [user]);
 
@@ -168,7 +161,6 @@ export default function App() {
       ) : (
         <Context.Provider value={user}>
           <Router>
-            <Header />
             <Routes>
               <Route exact path="/" element={<Profile />} />
               <Route

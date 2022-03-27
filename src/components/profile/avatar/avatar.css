@@ -1,21 +1,64 @@
+.profilePicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.perfilImg {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+h1 {
+  color: black !important;
+}
 
-.profilePicture{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.perfilImg {
+  display: flex;
+  flex-direction: row;
+  height: 61px;
+  width: 61px;
 }
-.perfilImg{
-    cursor: pointer;
+.close-profile {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.589);
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+  -webkit-animation-name: open;
+  animation-name: open;
 }
-h1{
-    color:black !important
+@-webkit-keyframes open {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.335);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.589);
+  }
 }
-.container {
-    background: var(--headerbackground);
-    border-right: 1px solid var( --color8);
-    border-top: 1px solid var( --color8);
+@keyframes open {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  50% {
+    background-color: rgba(0, 0, 0, 0.335);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0.589);
+  }
 }
-.offCanvasBody{
-    display: flex;
-    flex-direction: row;
+.cardProfile {
+  z-index: 100;
+}
+
+.containerProfile {
+  background-color: var(--main);
 }

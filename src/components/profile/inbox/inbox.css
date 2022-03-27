@@ -1,26 +1,65 @@
-.card-header{
-    text-align: center;
+.card-header {
+  text-align: center;
 }
 .card {
-    border: 1px solid bisque;
-    background-color: var(--main);
-    padding: 2rem;
+  background-color: var(--main);
+  color: #fff;
+
+  height: calc(100vh - 110px);
+  overflow-y: auto;
 }
-.card-body{
-    background-color: var(--amarillo-mensajes);
-    border: 1px solid goldenrod;
-    margin-top: 0.5rem;
+
+.card-body {
+  padding: 20px;
+  height: 100px;
+  border-top: 1.5px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to right,
+    rgba(249, 206, 62, 1) 0%,
+    rgba(247, 209, 84, 1) 14%,
+    rgba(104, 255, 162, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.card-body:hover{
-    background-color: var(--color2);
+.card-body:last-of-type {
+  border-bottom: 1px solid;
 }
-.card-text  {
-    text-decoration: none;
-    color: black;
+.card-body:hover {
+  background-color: rgb(73 73 73);
+}
+.card-container-pic {
+  background-color: #fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+.card-text {
+  text-align: start;
+  width: 150px;
+  margin-left: 1.5rem;
+}
+.card-name {
+  margin: 0;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.card-last-messsage-text {
+  font-size: 14px;
+  margin: 10px 0 0 0;
 }
 .messageButton {
-    text-align: center;
-    padding-top: 20px;
-    text-decoration: none;
-    color: black;
+  width: 100%;
+  text-align: end;
+  text-decoration: none;
+}
+
+.messageButton img {
+  width: 30px;
+  height: 30px;
 }
