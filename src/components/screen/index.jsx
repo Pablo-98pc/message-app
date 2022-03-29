@@ -9,49 +9,21 @@ import backImg from "../../images/back.svg";
 
 import postNewMessage from "../helpers/postNewMessage";
 
-const gg = {
-  name: "misterx",
-  userid: 10,
-  date: "2022-03-29T16:08:31.571Z",
-  conversation: [
-    {
-      to_user: 10,
-      from_user: 12,
-      date: "2022-03-29T16:08:31.571Z",
-      text: "Holaa",
-    },
-    {
-      to_user: 12,
-      from_user: 10,
-      date: "2022-03-27T18:46:58.975Z",
-      text: "Como va ese socket",
-    },
-    {
-      to_user: 12,
-      from_user: 10,
-      date: "2022-03-27T18:46:12.728Z",
-      text: "laaaaaaaaaaaaa",
-    },
-    {
-      to_user: 12,
-      from_user: 10,
-      date: "2022-03-27T18:45:34.352Z",
-      text: "Hola pararara",
-    },
-    {
-      to_user: 12,
-      from_user: 10,
-      date: "2022-03-27T17:30:39.037Z",
-      text: "Hola buenas",
-    },
-  ],
-};
-
 export default Screen = ({ message }) => {
-  const { conversation: messages } = message || gg;
-  const { name: username } = message || gg;
-  const { userid } = message || gg;
-  const ownid = useContext(Context)?.id || 12;
+  // const { conversation: messages } = message || gg;
+  // const { name: username } = message || gg;
+  // const { userid } = message || gg;
+  // const ownid = useContext(Context)?.id || 12;
+  // let userid;
+  // messages[0].from_user == ownid
+  //   ? (userid = messages[0].to_user)
+  //   : (userid = messages[0].from_user);
+  // console.log(userid);
+
+  const { conversation: messages } = message;
+  const { name: username } = message;
+  const { userid } = message;
+  const ownid = useContext(Context)?.id;
 
   const [msg, setMsg] = useState();
   const [chat, setChat] = useState(messages);

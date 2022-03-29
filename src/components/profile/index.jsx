@@ -5,7 +5,7 @@ import { useEffect, useState, useContext, useCallback } from "react";
 /* import 'bootstrap/dist/css/bootstrap.min.css'; */
 import Inbox from "./inbox";
 import Screen from "../screen";
-import Socket from '../../utils/Socket';
+import Socket from "../../utils/Socket";
 import foto from "../../images/edit.svg";
 import getMessages from "../helpers/getMessages";
 import getMessagesBetween from "../helpers/getMessagesBetween";
@@ -16,8 +16,8 @@ export default function Profile() {
   const [messages, setMessages] = useState([]);
   const idfortest = dataprueba.id;
   const [isLoading, setIsLoading] = useState(true);
-  const [currentMessage,setCurrentMessage] = useState(null);
-  
+  const [currentMessage, setCurrentMessage] = useState(null);
+
   const getmessage = useCallback(async () => {
     // params:user id
     // return : conversation id , name
@@ -31,12 +31,13 @@ export default function Profile() {
       conversations.data.map(async (item) => {
         const data = await getMessagesBetween(idfortest, item.id);
         const finalConversations = {
+          userid: item.id,
           name: item.username,
           date: data.data.rows[0].date,
           conversation: data.data.rows,
         };
         return finalConversations;
-      }),
+      })
     );
 
     // order conversations for descending date
@@ -61,17 +62,15 @@ export default function Profile() {
     setupSocket();
   }, [dataprueba]);
 
-
-   //Function that prepares the websocket connection.
-   const setupSocket = ()=>{
+  //Function that prepares the websocket connection.
+  const setupSocket = () => {
     //conexionSocket para definir id
-    Socket.emit("connected",idfortest)
-    Socket.on("news",async()=>{
-        console.log('Haz update.....');
-        await getmessage();
-    })
-
-} 
+    Socket.emit("connected", idfortest);
+    Socket.on("news", async () => {
+      console.log("Haz update.....");
+      await getmessage();
+    });
+  };
   return (
     <div className="container-profile">
       <div className="left-side-inbox">
@@ -82,11 +81,15 @@ export default function Profile() {
             <Link to={`/newmessage`}>
               <img alt="Profile pic" src={foto}></img>
             </Link>
-          </div>     
+          </div>
         </div>
-         <Inbox conversations={messages} isLoading={isLoading} setCurrentMessage={setCurrentMessage} />
+        <Inbox
+          conversations={messages}
+          isLoading={isLoading}
+          setCurrentMessage={setCurrentMessage}
+        />
       </div>
-      <Screen message={currentMessage}/>
+      <Screen message={currentMessage} />
     </div>
   );
 }
