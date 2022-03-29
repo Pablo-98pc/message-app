@@ -103,9 +103,9 @@ inpur-border: hsl(115,13,20)
   padding-right: 1.8rem;
   color: blue;
   margin-left: auto;
-  /* necessary only on desktop view */
-  margin-right: -1rem;
   border-bottom-right-radius: 0;
+  /* necessary because scrollbar */
+  margin-right: -8px;
 }
 .screen-msg > .head-msg {
   border-bottom-left-radius: var(--brd-radius-mod);
