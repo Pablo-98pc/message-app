@@ -17,6 +17,7 @@ import NewMessage from "./components/newmessage";
 import PageNotFound from "./components/404";
 import getProfileByUsernameLogin from "./components/helpers/getProfileByUsernameLogin";
 import postNewUser from "./components/helpers/postNewUser";
+import { Screen } from "./components/screen";
 export const Context = createContext(null);
 
 export default function App() {
@@ -49,9 +50,9 @@ export default function App() {
         setLogged(true);
         window.localStorage.setItem(
           "userlogged",
-          JSON.stringify({ ...newData.data }),
+          JSON.stringify({ ...newData.data })
         );
-      },
+      }
     );
   }, [user]);
 
@@ -69,7 +70,7 @@ export default function App() {
       setLogged(true);
       window.localStorage.setItem(
         "userlogged",
-        JSON.stringify(...newData.data),
+        JSON.stringify(...newData.data)
       );
     });
   }, [user]);
@@ -85,7 +86,8 @@ export default function App() {
 
   return (
     <>
-      {!logged ? (
+      {/* !loged */}
+      {logged ? (
         <div className="welcome">
           <div className="welcome-info">
             <h1>Welcome</h1>
@@ -166,7 +168,8 @@ export default function App() {
                 element={<Conversation />}
               />
               <Route path="/message/:id" element={<Message />} />
-              <Route path="/newmessage" element={<NewMessage />} />
+              {/* <Route path="/newmessage" element={<NewMessage />} /> */}
+              <Route path="/newmessage" element={<Screen />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Router>

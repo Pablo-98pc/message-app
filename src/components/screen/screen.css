@@ -1,0 +1,184 @@
+/*
+   Comments max width 50% - padding + img-width/2
+   fit content 
+*/
+/* Send button change color from css */
+/* to the bottom context button */
+/* 
+   personalized scrollbar 
+   start at the bottom
+*/
+/* 
+   (?)continous messages same width
+   text wrap
+*/
+/* 
+back: hsl(115,49,57)
+line-top: hsl(48,56,56)
+send:  
+inpur-border: hsl(115,13,20)
+*/
+/* =================== GENERAL ===================== */
+:root {
+  --clr-baground: rgb(59, 52, 52);
+  --clr-bgnav: hsl(0, 0%, 7%);
+  --clr-brnav: #ceb450;
+  --clr-message: black;
+  --clr-text: white;
+  --clr-input: #2d3a2c;
+  --img-user: 4rem;
+  --pdg-side: 3rem;
+  --brd-radius: 15px;
+  --brd-radius-mod: 5px;
+}
+.screen-container {
+  background-color: var(--clr-baground);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ==================== NAV ========================== */
+.screen-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding: 1rem 2rem calc(var(--img-user) / 2);
+  width: 100%;
+  background-color: var(--clr-bgnav);
+  border-bottom: 2px solid var(--clr-brnav);
+}
+.screen-nav > p {
+  --p-username: 10rem;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  width: var(--p-username);
+  text-align: center;
+  margin-right: calc(50% - var(--p-username) / 2);
+}
+.screen-nav > img {
+  position: absolute;
+  width: var(--img-user);
+  bottom: calc(-1 * var(--img-user) / 2);
+  left: calc(50% - var(--img-user) / 2);
+}
+.screen-back > img {
+  width: 1.5rem;
+}
+
+/* ====================== MESSAGES ==================== */
+.screen-msg {
+  padding: 0 var(--pdg-side);
+  height: 75vh;
+  overflow: auto;
+  margin-right: 3px;
+  position: relative;
+}
+.screen-msg > p {
+  padding: 1rem;
+  background-color: var(--clr-message);
+  color: var(--clr-text);
+  width: fit-content;
+  max-width: calc(50% + var(--img-user) / 2);
+  border-radius: var(--brd-radius);
+  overflow-wrap: break-word;
+  position: relative;
+}
+.screen-msg > .left + .left,
+.screen-msg > .rigth + .rigth {
+  margin-top: -0.9rem;
+  border-top-left-radius: var(--brd-radius-mod);
+  border-top-right-radius: var(--brd-radius-mod);
+}
+
+.screen-msg > .left {
+  padding-left: 1.8rem;
+  color: brown;
+  margin-right: auto;
+  border-bottom-left-radius: 0;
+}
+.screen-msg > .rigth {
+  padding-right: 1.8rem;
+  color: blue;
+  margin-left: auto;
+  /* necessary only on desktop view */
+  margin-right: -1rem;
+  border-bottom-right-radius: 0;
+}
+.screen-msg > .head-msg {
+  border-bottom-left-radius: var(--brd-radius-mod);
+  border-bottom-right-radius: var(--brd-radius-mod);
+  /* border-radius: 12px 12px 5px 5px; */
+}
+.screen-msg span {
+  position: absolute;
+  bottom: 1px;
+  font-size: 0.5rem;
+  color: white;
+  opacity: 0.5;
+}
+.rigth > span {
+  right: 2px;
+}
+.left > span {
+  left: 2px;
+}
+/* ======================= INPUT ================= */
+.screen-form {
+  display: flex;
+  align-items: center;
+  width: calc(100% - var(--pdg-side) * 2);
+  margin: 0 auto;
+}
+.screen-form > input {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.7rem;
+  border: 1px solid var(--clr-input);
+  background-color: var(--clr-bgnav);
+  border-radius: var(--brd-radius);
+  color: white;
+}
+.screen-form > input:focus-visible {
+  border-color: greenyellow !important;
+}
+.screen-form > button {
+  border: none;
+  background: none;
+  margin: 0 -4.5rem -0.2rem;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+.screen-form > button:hover {
+  opacity: 1;
+  transition: none;
+  animation: none;
+}
+.screen-send > img {
+  width: 2rem;
+}
+
+/* ========================== SCROLL BAR ========================= */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 999px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 999px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
