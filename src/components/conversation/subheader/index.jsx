@@ -9,8 +9,6 @@ export default function Subheader(type, idprop){
     const {id} = useParams(); 
     const data =  useContext(Context);
     const conversationwith =  useContext(Conversation);
-    console.log(data);
-    console.log(id);
     const tester = data.length > 0 ? true : false;
     return(
         <div className='subheader'>

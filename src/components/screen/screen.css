@@ -35,6 +35,7 @@ inpur-border: hsl(115,13,20)
   background-color: var(--clr-baground);
   height: 100vh;
   overflow: hidden;
+  width: 100%;
 }
 
 /* ==================== NAV ========================== */
@@ -63,6 +64,7 @@ inpur-border: hsl(115,13,20)
   width: var(--img-user);
   bottom: calc(-1 * var(--img-user) / 2);
   left: calc(50% - var(--img-user) / 2);
+  z-index: 10;
 }
 .screen-back > img {
   width: 1.5rem;

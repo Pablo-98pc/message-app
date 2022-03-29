@@ -6,18 +6,8 @@
   padding: 0 20px 0 20px;
 }
 .container-profile {
-  max-width: 500px;
-  z-index: 1;
-}
-@media (min-width: 450px) {
-  .container-profile {
-    max-width: 45vw;
-  }
-}
-@media (min-width: 900px) {
-  .container-profile {
-    max-width: 35vw;
-  }
+  display: flex;
+ 
 }
 .card-flex {
   display: flex;
@@ -26,4 +16,8 @@
 h2 {
   color: #fff;
   text-align: center;
+}
+
+.left-side-inbox{
+  flex-basis: 40%;
 }

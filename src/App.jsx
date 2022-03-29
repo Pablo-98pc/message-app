@@ -86,8 +86,8 @@ export default function App() {
 
   return (
     <>
-      {/* !loged */}
-      {logged ? (
+  
+      {!logged ? (
         <div className="welcome">
           <div className="welcome-info">
             <h1>Welcome</h1>
@@ -168,8 +168,8 @@ export default function App() {
                 element={<Conversation />}
               />
               <Route path="/message/:id" element={<Message />} />
-              {/* <Route path="/newmessage" element={<NewMessage />} /> */}
-              <Route path="/newmessage" element={<Screen />} />
+              <Route path="/newmessage" element={<NewMessage />} />
+              {/* <Route path="/newmessage" element={<Screen />} /> */}
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Router>
