@@ -141,8 +141,9 @@ inpur-border: hsl(115,13,20)
   border-radius: var(--brd-radius);
   color: white;
 }
-.screen-form > input:focus-visible {
-  border-color: greenyellow !important;
+.screen-form > input:focus {
+  border-color: greenyellow;
+  outline: none;
 }
 .screen-form > button {
   border: none;
