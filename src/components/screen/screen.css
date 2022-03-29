@@ -153,13 +153,14 @@ inpur-border: hsl(115,13,20)
 }
 .screen-form > button:hover {
   opacity: 1;
-  transition: none;
-  animation: none;
 }
 .screen-send > img {
   width: 2rem;
 }
-
+.screen-form > button::after,
+.screen-form > button::before {
+  display: none;
+}
 /* ========================== SCROLL BAR ========================= */
 /* width */
 ::-webkit-scrollbar {

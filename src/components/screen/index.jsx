@@ -28,9 +28,11 @@ export const Screen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submited");
-    setChat((prevChat) => [...prevChat, { user: "a", msg }]);
-    setMsg("");
+    if (msg.trim() != "") {
+      console.log("submited");
+      setChat((prevChat) => [...prevChat, { user: "a", msg }]);
+      setMsg("");
+    }
   };
 
   useEffect(() => scrollToBottom(), []);
