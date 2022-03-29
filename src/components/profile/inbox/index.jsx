@@ -5,7 +5,7 @@ import "./inbox.css";
 import getMessages from "../../helpers/getMessages";
 import getMessagesBetween from "../../helpers/getMessagesBetween";
 import { Icon } from "@iconify/react";
-import Socket from '../../../utils/Socket'
+import Socket from "../../../utils/Socket";
 
 export default function Inbox() {
   const [messages, setMessages] = useState([]);
@@ -35,7 +35,7 @@ export default function Inbox() {
     );
 
     // order conversations for descending date
-    const orderConversations = conversationMessages.sort(function (a, b) {
+    const orderConversations = conversationMessages.sort((a, b) => {
       const nameA = a.date;
       const nameB = b.date;
       if (nameA > nameB) {
@@ -57,17 +57,15 @@ export default function Inbox() {
   }, [dataprueba]);
 
   //Function that prepares the websocket connection.
-  const setupSocket = ()=>{
+  const setupSocket = () => {
     //conexionSocket para definir id
-    console.log("Definiendo socket")
-    Socket.emit("connected",idfortest)
-    Socket.on("news",async()=>{
-        console.log('Haz update.....');
-        await getmessage();
-    })
-
-}
-
+    console.log("Definiendo socket");
+    Socket.emit("connected", idfortest);
+    Socket.on("news", async () => {
+      console.log("Haz update.....");
+      await getmessage();
+    });
+  };
 
   return (
     <>
@@ -95,8 +93,9 @@ export default function Inbox() {
                 </div>
               </div>
               <div className="card-arrow-right">
-                <Icon icon="akar-icons:chevron-right"></Icon>
+                {" "}
                 <p>{new Date(message.date).toTimeString().slice(0, 5)}</p>
+                <Icon icon="akar-icons:chevron-right"></Icon>
               </div>
             </div>
           ))

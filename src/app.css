@@ -22,7 +22,6 @@
 .popup h2 {
   margin-top: 0;
   color: #333;
-  font-family: Tahoma, Arial, sans-serif;
 }
 .popup .close {
   position: absolute;
@@ -58,11 +57,18 @@
 /* ------- welcome -----------*/
 
 .containerMain {
-  height: 100vh;
   width: 100vw;
-
-  /* margin: auto; */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mainLog {
   text-align: center;
+}
+.mainLog h1 {
+  font-size: 60px;
+  margin-top: 0;
 }
 
 .welcome-info {
@@ -89,14 +95,8 @@
 .buttons {
   display: inline;
 }
-.popup-content {
-  /* margin: auto; */
-  /* background: rgb(255, 255, 255); */
-  /* width: 100%; */
-  /* padding: 5px; */
-}
+
 .popup-arrow {
-  /* color: rgb(255, 255, 255); */
   display: none;
 }
 #popup-root .popup-content {

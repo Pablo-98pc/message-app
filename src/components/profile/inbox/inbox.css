@@ -67,10 +67,14 @@
   text-align: end;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   height: 100%;
 }
+.card-arrow-right svg {
+  font-size: 24px;
+}
 .card-arrow-right p {
-  margin: 20px 0 0 0;
-  font-size: 14px;
+  margin: 10px 0 0 0;
+  font-size: 12px;
 }
