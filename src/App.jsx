@@ -17,7 +17,7 @@ import NewMessage from "./components/newmessage";
 import PageNotFound from "./components/404";
 import getProfileByUsernameLogin from "./components/helpers/getProfileByUsernameLogin";
 import postNewUser from "./components/helpers/postNewUser";
-import { Screen } from "./components/screen";
+// import Screen from "./components/screen";
 export const Context = createContext(null);
 
 export default function App() {
@@ -86,7 +86,6 @@ export default function App() {
 
   return (
     <>
-  
       {!logged ? (
         <div className="welcome">
           <div className="welcome-info">
