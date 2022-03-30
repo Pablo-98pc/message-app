@@ -25,11 +25,14 @@ export default function Inbox() {
     const conversationMessages = await Promise.all(
       conversations.data.map(async (item) => {
         const data = await getMessagesBetween(idfortest, item.id);
+
         const finalConversations = {
           name: item.username,
+          id: item.id,
           date: data.data.rows[0].date,
           conversation: data.data.rows,
         };
+        console.log(finalConversations);
         return finalConversations;
       }),
     );

@@ -17,6 +17,7 @@ import NewMessage from "./components/newmessage";
 import PageNotFound from "./components/404";
 import getProfileByUsernameLogin from "./components/helpers/getProfileByUsernameLogin";
 import postNewUser from "./components/helpers/postNewUser";
+import { Screen } from "./components/screen";
 export const Context = createContext(null);
 
 export default function App() {
@@ -176,6 +177,7 @@ export default function App() {
               />
               <Route path="/message/:id" element={<Message />} />
               <Route path="/newmessage" element={<NewMessage />} />
+              {/* <Route path="/newmessage" element={<Screen />} /> */}
               <Route path="*" element={<PageNotFound />} />
             </Routes>
           </Router>
