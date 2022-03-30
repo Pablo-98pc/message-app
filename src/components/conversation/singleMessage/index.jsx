@@ -9,8 +9,6 @@ export default function SingleMessage(type, idprops){
     const {id} = useParams(); 
     const data =  useContext(Context);
     const conversationwith =  useContext(Conversation);
-    console.log(data);
-    console.log(id);
     return(
         <div className='subheader'>
             <div className='top-subheader'>

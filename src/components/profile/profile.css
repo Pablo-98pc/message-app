@@ -21,13 +21,10 @@
       rgba(249, 206, 62, 1) 100%
     );
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 );
+    display: flex;
   }
 }
-@media (min-width: 900px) {
-  .container-profile {
-    max-width: 35vw;
-  }
-}
+
 .card-flex {
   display: flex;
   align-items: center;
@@ -35,4 +32,8 @@
 h2 {
   color: #fff;
   text-align: center;
+}
+
+.left-side-inbox {
+  flex-basis: 40%;
 }

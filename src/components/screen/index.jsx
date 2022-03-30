@@ -21,7 +21,7 @@ const message = [
 ];
 const username = "Username";
 
-export const Screen = () => {
+export default Screen = () => {
   const [msg, setMsg] = useState();
   const [chat, setChat] = useState(message);
   const messagesEnd = useRef(null);
