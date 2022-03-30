@@ -16,7 +16,7 @@ export default function Profile() {
   const [messages, setMessages] = useState([]);
   const idfortest = dataprueba.id;
   const [isLoading, setIsLoading] = useState(true);
-  const [currentMessage, setCurrentMessage] = useState(null);
+  const [currentMessage, setCurrentMessage] = useState();
 
   const getmessage = useCallback(async () => {
     // params:user id
@@ -37,7 +37,7 @@ export default function Profile() {
           conversation: data.data.rows,
         };
         return finalConversations;
-      })
+      }),
     );
 
     // order conversations for descending date
@@ -71,6 +71,7 @@ export default function Profile() {
       await getmessage();
     });
   };
+  console.log(currentMessage);
   return (
     <div className="container-profile">
       <div className="left-side-inbox">
@@ -89,7 +90,7 @@ export default function Profile() {
           setCurrentMessage={setCurrentMessage}
         />
       </div>
-      <Screen message={currentMessage} />
+      {currentMessage ? <Screen message={currentMessage} /> : null}
     </div>
   );
 }

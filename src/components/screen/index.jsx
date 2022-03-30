@@ -18,7 +18,7 @@ export default Screen = ({ message }) => {
   // messages[0].from_user == ownid
   //   ? (userid = messages[0].to_user)
   //   : (userid = messages[0].from_user);
-  // console.log(userid);
+  console.log(message);
 
   const { conversation: messages } = message;
   const { name: username } = message;
@@ -28,7 +28,10 @@ export default Screen = ({ message }) => {
   const [msg, setMsg] = useState();
   const [chat, setChat] = useState(messages);
   const messagesEnd = useRef(null);
-
+  useEffect(() => {
+    console.log("cambie", messages);
+    setChat(messages);
+  }, [message]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (msg.trim() !== "") {
@@ -75,34 +78,36 @@ export default Screen = ({ message }) => {
         <p className="screen-username">{username}</p>
         <img src={userImg} alt="" className="screen-img" />
       </nav>
-      <div className="screen-msg">
-        {chat.map(({ from_user, text, date }, i, array) => {
-          let tagClass = "left";
-          const next = array[i + 1]?.from_user;
+      <div>
+        <div className="screen-msg">
+          {chat.map(({ from_user, text, date }, i, array) => {
+            let tagClass = "left";
+            const next = array[i + 1]?.from_user;
 
-          if (from_user === ownid) tagClass = "rigth";
-          if (from_user === next) tagClass += " head-msg";
+            if (from_user === ownid) tagClass = "rigth";
+            if (from_user === next) tagClass += " head-msg";
 
-          return (
-            <p key={`msg-${i}`} className={tagClass}>
-              {text} <span>{date.split("T")[1].substring(0, 5)}</span>
-            </p>
-          );
-        })}
+            return (
+              <p key={`msg-${i}`} className={tagClass}>
+                {text} <span>{date.split("T")[1].substring(0, 5)}</span>
+              </p>
+            );
+          })}
 
-        <div className="scroll-bottom" ref={messagesEnd} />
+          <div className="scroll-bottom" ref={messagesEnd} />
+        </div>
+        <form onSubmit={handleSubmit} className="screen-form" action="">
+          <input
+            type="text"
+            className="screen-input"
+            value={msg}
+            onChange={(e) => setMsg(e.target.value)}
+          />
+          <button href="" className="screen-send">
+            <img src={sendImg} alt="" />
+          </button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="screen-form" action="">
-        <input
-          type="text"
-          className="screen-input"
-          value={msg}
-          onChange={(e) => setMsg(e.target.value)}
-        />
-        <button href="" className="screen-send">
-          <img src={sendImg} alt="" />
-        </button>
-      </form>
     </section>
   );
 };
