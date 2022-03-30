@@ -1,43 +1,67 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { Context } from "../../App";
 import "./screen.css";
+
 import userImg from "../../images/perfilmessage.png";
 import sendImg from "../../images/send.svg";
 import backImg from "../../images/back.svg";
-import { Link } from "react-router-dom";
 
-const message = [
-  { time: "10:01", user: "j", msg: "rrra" },
-  { time: "10:01", user: "a", msg: "aa" },
-  { time: "10:01", user: "j", msg: "arrrr" },
-  { time: "10:01", user: "j", msg: "rrra" },
-  { time: "10:01", user: "a", msg: "aaaaaaaaaa" },
-  { time: "10:01", user: "j", msg: "arrra" },
-  { time: "10:01", user: "j", msg: "arrrrra" },
-  { time: "10:01", user: "a", msg: "aa" },
-  { time: "10:01", user: "a", msg: "aa" },
-  { time: "10:01", user: "j", msg: "rrrrrrrrrr" },
-  { time: "10:01", user: "a", msg: "aa" },
-  { time: "10:01", user: "j", msg: "arrrrrrrrrrrrr" },
-];
-const username = "Username";
+import postNewMessage from "../helpers/postNewMessage";
 
-export default Screen = () => {
+export default Screen = ({ message }) => {
+  // const { conversation: messages } = message || gg;
+  // const { name: username } = message || gg;
+  // const { userid } = message || gg;
+  // const ownid = useContext(Context)?.id || 12;
+  // let userid;
+  // messages[0].from_user == ownid
+  //   ? (userid = messages[0].to_user)
+  //   : (userid = messages[0].from_user);
+  // console.log(userid);
+
+  const { conversation: messages } = message;
+  const { name: username } = message;
+  const { userid } = message;
+  const ownid = useContext(Context)?.id;
+
   const [msg, setMsg] = useState();
-  const [chat, setChat] = useState(message);
+  const [chat, setChat] = useState(messages);
   const messagesEnd = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (msg.trim() != "") {
-      console.log("submited");
-      setChat((prevChat) => [...prevChat, { user: "a", msg }]);
+    if (msg.trim() !== "") {
+      // Send to socket
+      // test ========================================
+      // setChat((prevChat) => [
+      //   ...prevChat,
+      //   {
+      //     to_user: 10,
+      //     from_user: userid,
+      //     date: new Date().toString(),
+      //     text: msg,
+      //   },
+      // ]);
+      //================================================
+      let bodytosend = {
+        groupmessage: false,
+        text: msg,
+        //(!) subject: subject.current.value,
+        from_user: ownid,
+        to_user: userid,
+        date: new Date(),
+      };
+      console.log("bodytosend", bodytosend);
+      await postNewMessage(bodytosend, "user").then((newData) => {
+        console.log(newData);
+      });
       setMsg("");
     }
   };
 
   useEffect(() => scrollToBottom(), []);
   useEffect(() => scrollToBottom("smooth"), [chat]);
-
   const scrollToBottom = (behavior) => {
     messagesEnd.current.scrollIntoView({ behavior });
   };
@@ -52,16 +76,16 @@ export default Screen = () => {
         <img src={userImg} alt="" className="screen-img" />
       </nav>
       <div className="screen-msg">
-        {chat.map(({ user, msg, time }, i, array) => {
+        {chat.map(({ from_user, text, date }, i, array) => {
           let tagClass = "left";
-          const next = array[i + 1]?.user;
+          const next = array[i + 1]?.from_user;
 
-          if (user == "a") tagClass = "rigth";
-          if (user == next) tagClass += " head-msg";
+          if (from_user === ownid) tagClass = "rigth";
+          if (from_user === next) tagClass += " head-msg";
 
           return (
             <p key={`msg-${i}`} className={tagClass}>
-              {msg} <span>{time}</span>
+              {text} <span>{date.split("T")[1].substring(0, 5)}</span>
             </p>
           );
         })}
