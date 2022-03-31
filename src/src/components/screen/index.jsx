@@ -9,44 +9,38 @@ import backImg from "../../images/back.svg";
 
 import postNewMessage from "../helpers/postNewMessage";
 
-export default Screen = ({ message }) => {
-  // const { conversation: messages } = message || gg;
-  // const { name: username } = message || gg;
-  // const { userid } = message || gg;
-  // const ownid = useContext(Context)?.id || 12;
-  // let userid;
-  // messages[0].from_user == ownid
-  //   ? (userid = messages[0].to_user)
-  //   : (userid = messages[0].from_user);
-  console.log(message);
+export default Screen = ({ message, setMessage, indexM }) => {
+  console.log("mensaje", indexM);
 
-  const { conversation: messages } = message;
-  const { name: username } = message;
-  const { userid } = message;
+  const { conversation: messages } = message[indexM];
+  const { name: username } = message[indexM];
+  const { userid } = message[indexM];
   const ownid = useContext(Context)?.id;
 
   const [msg, setMsg] = useState();
   const [chat, setChat] = useState(messages);
   const messagesEnd = useRef(null);
   useEffect(() => {
-    console.log("cambie", messages);
+    // console.log("cambie", messages);
     setChat(messages);
-  }, [message]);
+  }, [indexM, message]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (msg.trim() !== "") {
       // Send to socket
       // test ========================================
-      // setChat((prevChat) => [
-      //   ...prevChat,
-      //   {
-      //     to_user: 10,
-      //     from_user: userid,
-      //     date: new Date().toString(),
-      //     text: msg,
-      //   },
-      // ]);
-      //================================================
+      setChat((prevChat) => [
+        ...prevChat,
+        {
+          to_user: userid,
+          from_user: ownid,
+          date: new Date().toTimeString(),
+          text: msg,
+        },
+      ]);
+
+      // ================================================
       let bodytosend = {
         groupmessage: false,
         text: msg,
@@ -57,9 +51,18 @@ export default Screen = ({ message }) => {
       };
       console.log("bodytosend", bodytosend);
       await postNewMessage(bodytosend, "user").then((newData) => {
-        console.log(newData);
+        console.log("post", newData);
       });
       setMsg("");
+      let tempState = [...message];
+      tempState[indexM].conversation.push({
+        to_user: userid,
+        from_user: ownid,
+        date: new Date().toTimeString(),
+        text: msg,
+      });
+
+      setMessage(tempState); // console.log("chat", [...prevState]);
     }
   };
 

@@ -23,20 +23,28 @@ export default function Inbox({ conversations, isLoading, setCurrentMessage }) {
           </div>
         ) : (
           messages?.map((message, index) => (
-            <div className="card-body" key={index}>
+            <div
+              className="card-body"
+              onClick={() => {
+                // console.log("indexmap", index);
+                setCurrentMessage(index);
+              }}
+              key={index}
+            >
               <div className="card-flex">
                 <div className="card-container-pic">
                   <img src="" alt="" />
                 </div>
-                <div
-                  className="card-text"
-                  onClick={() => setCurrentMessage(message)}
-                >
+                <div className="card-text">
                   <p className="card-name">{message.name}</p>
                   <p className="card-last-messsage-text">
-                    {message.conversation[0].text.length > 20
-                      ? message.conversation[0].text.slice(0, 20) + " ..."
-                      : message.conversation[0].text}
+                    {message.conversation[message.conversation.length - 1].text
+                      .length > 20
+                      ? message.conversation[
+                          message.conversation.length - 1
+                        ].text.slice(0, 20) + " ..."
+                      : message.conversation[message.conversation.length - 1]
+                          .text}
                   </p>
                 </div>
               </div>

@@ -16,7 +16,7 @@ export default function Profile() {
   const [messages, setMessages] = useState([]);
   const idfortest = dataprueba.id;
   const [isLoading, setIsLoading] = useState(true);
-  const [currentMessage, setCurrentMessage] = useState();
+  const [currentMessage, setCurrentMessage] = useState(null);
 
   const getmessage = useCallback(async () => {
     // params:user id
@@ -30,10 +30,11 @@ export default function Profile() {
     const conversationMessages = await Promise.all(
       conversations.data.map(async (item) => {
         const data = await getMessagesBetween(idfortest, item.id);
+
         const finalConversations = {
           userid: item.id,
           name: item.username,
-          date: data.data.rows[0].date,
+          date: data.data.rows[data.data.rows.length - 1].date,
           conversation: data.data.rows,
         };
         return finalConversations;
@@ -71,7 +72,7 @@ export default function Profile() {
       await getmessage();
     });
   };
-  console.log(currentMessage);
+  console.log("current", messages);
   return (
     <div className="container-profile">
       <div className="left-side-inbox">
@@ -90,7 +91,13 @@ export default function Profile() {
           setCurrentMessage={setCurrentMessage}
         />
       </div>
-      {currentMessage ? <Screen message={currentMessage} /> : null}
+      {currentMessage !== null ? (
+        <Screen
+          message={messages}
+          setMessage={setMessages}
+          indexM={currentMessage}
+        />
+      ) : null}
     </div>
   );
 }
