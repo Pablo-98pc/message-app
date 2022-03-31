@@ -32,7 +32,7 @@ inpur-border: hsl(115,13,20)
   --brd-radius-mod: 5px;
 }
 .screen-container {
-  background-color: var(--clr-baground);
+  background-color: var(--main);
   height: 100vh;
   overflow: hidden;
   width: 100%;
@@ -82,6 +82,8 @@ inpur-border: hsl(115,13,20)
   padding: 1rem;
   background-color: var(--clr-message);
   color: var(--clr-text);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
   max-width: calc(50% + var(--img-user) / 2);
   border-radius: var(--brd-radius);
@@ -97,13 +99,14 @@ inpur-border: hsl(115,13,20)
 
 .screen-msg > .left {
   padding-left: 1.8rem;
-  color: brown;
+  color: #fff;
+  background-color: #7bf9985e;
   margin-right: auto;
   border-bottom-left-radius: 0;
 }
 .screen-msg > .rigth {
   padding-right: 1.8rem;
-  color: blue;
+  color: #fff;
   margin-left: auto;
   border-bottom-right-radius: 0;
   /* necessary because scrollbar */

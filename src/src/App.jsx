@@ -45,14 +45,20 @@ export default function App() {
     let passwordtocheck = passwordlogin.current.value;
     await getProfileByUsernameLogin(usertosearch, passwordtocheck).then(
       (newData) => {
-        setUser({ ...newData.data });
-        setNewuser(false);
-        setLogged(true);
-        window.localStorage.setItem(
-          "userlogged",
-          JSON.stringify({ ...newData.data })
-        );
-      }
+        console.log("newData", newData);
+        if (newData !== null && typeof newData.data === "object") {
+          console.log("si paso");
+          setUser({ ...newData.data });
+          setNewuser(false);
+          setLogged(true);
+          window.localStorage.setItem(
+            "userlogged",
+            JSON.stringify({ ...newData.data }),
+          );
+        } else {
+          console.log("error en login");
+        }
+      },
     );
   }, [user]);
 
@@ -70,7 +76,7 @@ export default function App() {
       setLogged(true);
       window.localStorage.setItem(
         "userlogged",
-        JSON.stringify(...newData.data)
+        JSON.stringify(...newData.data),
       );
     });
   }, [user]);
@@ -87,77 +93,80 @@ export default function App() {
   return (
     <>
       {!logged ? (
-        <div className="welcome">
-          <div className="welcome-info">
+        <div className="containerMain">
+          <div className="mainLog">
             <h1>Welcome</h1>
-            <div className="buttons">
-              <Popup trigger={<button> Log in</button>} position="right center">
-                <div>
-                  <input
-                    id="username"
-                    ref={userprueba}
-                    type="text"
-                    placeholder="username"
-                    onChange={async (event) =>
-                      await setUsername(event.target.value)
-                    }
-                  ></input>
-                  <input
-                    type={passwordShown ? "text" : "password"}
-                    placeholder="password"
-                    ref={passwordlogin}
-                    onChange={(event) => setPassword(event.target.value)}
-                  ></input>
-                  <button onClick={togglePassword}>Show Password</button>
-                  <span>
-                    <a href="http://localhost:3000/%27%3E">
-                      Forgot your password?
-                    </a>
-                  </span>
-                  <button onClick={getData}>LOG IN</button>
-                </div>
-              </Popup>
-              <Popup
-                trigger={<button> Register</button>}
-                position="right center"
-              >
-                <div>
-                  <input
-                    type="text"
-                    ref={bodyusername}
-                    placeholder="username"
-                  ></input>
-                  <input
-                    type="text"
-                    ref={bodyfirstname}
-                    placeholder="name"
-                  ></input>
-                  <input
-                    type="text"
-                    ref={bodylastname}
-                    placeholder="surname"
-                  ></input>
-                  <input
-                    type="text"
-                    ref={bodyemail}
-                    placeholder="email"
-                  ></input>
-                  <input
-                    type={passwordShown ? "text" : "password"}
-                    ref={bodypassword}
-                    placeholder="password"
-                  ></input>
-                  <button onClick={togglePassword}>Show Password</button>
-                  <button onClick={postData}>REGISTER</button>
-                </div>
-              </Popup>
-            </div>
-          </div>
-          <div className="welcome-photo">
-            <img src={image} alt={image} className="image"></img>
+
+            <Popup
+              trigger={<button> Log in</button>}
+              position="center center"
+              nested
+              modal
+            >
+              <div className="containerLogin">
+                <input
+                  id="username"
+                  ref={userprueba}
+                  type="text"
+                  placeholder="username"
+                  onChange={async (event) =>
+                    await setUsername(event.target.value)
+                  }
+                ></input>
+                <input
+                  type={passwordShown ? "text" : "password"}
+                  placeholder="password"
+                  ref={passwordlogin}
+                  onChange={(event) => setPassword(event.target.value)}
+                ></input>
+                <button onClick={togglePassword}>Show Password</button>
+                <span>
+                  <a href="http://localhost:3000/%27%3E">
+                    Forgot your password?
+                  </a>
+                </span>
+                <button onClick={getData}>LOG IN</button>
+              </div>
+            </Popup>
+            <Popup
+              trigger={<button> Register</button>}
+              position="center center"
+              nested
+              modal
+            >
+              <div className="containerLogin">
+                <input
+                  type="text"
+                  ref={bodyusername}
+                  placeholder="username"
+                ></input>
+                <input
+                  type="text"
+                  ref={bodyfirstname}
+                  placeholder="name"
+                ></input>
+                <input
+                  type="text"
+                  ref={bodylastname}
+                  placeholder="surname"
+                ></input>
+                <input type="text" ref={bodyemail} placeholder="email"></input>
+                <input
+                  type={passwordShown ? "text" : "password"}
+                  ref={bodypassword}
+                  placeholder="password"
+                ></input>
+                <button onClick={togglePassword}>Show Password</button>
+                <button onClick={postData}>REGISTER</button>
+              </div>
+            </Popup>
           </div>
         </div>
       ) : (
+        /* <div className="welcome-photo">
+            <img src={image} alt={image} className="image"></img>
+          </div> */
+
         <Context.Provider value={user}>
           <Router>
             <Routes>

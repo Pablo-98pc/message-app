@@ -8,9 +8,6 @@
   height: 100%;
   width: 100%;
 }
-h1 {
-  color: black !important;
-}
 
 .perfilImg {
   display: flex;
@@ -25,7 +22,7 @@ h1 {
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.589);
+  background-color: rgba(0, 0, 0, 0.753);
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
   -webkit-animation-direction: alternate;
@@ -40,9 +37,6 @@ h1 {
   50% {
     background-color: rgba(0, 0, 0, 0.335);
   }
-  100% {
-    background-color: rgba(0, 0, 0, 0.589);
-  }
 }
 @keyframes open {
   0% {
@@ -51,9 +45,6 @@ h1 {
   50% {
     background-color: rgba(0, 0, 0, 0.335);
   }
-  100% {
-    background-color: rgba(0, 0, 0, 0.589);
-  }
 }
 .cardProfile {
   z-index: 100;
@@ -61,4 +52,12 @@ h1 {
 
 .containerProfile {
   background-color: var(--main);
+  border-right: 1.5px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(
+    to bottom,
+    rgba(104, 255, 162, 1) 0%,
+    rgba(249, 206, 62, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 );
 }

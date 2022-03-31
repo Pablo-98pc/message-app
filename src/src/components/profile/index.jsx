@@ -30,14 +30,15 @@ export default function Profile() {
     const conversationMessages = await Promise.all(
       conversations.data.map(async (item) => {
         const data = await getMessagesBetween(idfortest, item.id);
+
         const finalConversations = {
           userid: item.id,
           name: item.username,
-          date: data.data.rows[0].date,
+          date: data.data.rows[data.data.rows.length - 1].date,
           conversation: data.data.rows,
         };
         return finalConversations;
-      })
+      }),
     );
 
     // order conversations for descending date
@@ -71,6 +72,7 @@ export default function Profile() {
       await getmessage();
     });
   };
+  console.log("current", messages);
   return (
     <div className="container-profile">
       <div className="left-side-inbox">
@@ -89,7 +91,13 @@ export default function Profile() {
           setCurrentMessage={setCurrentMessage}
         />
       </div>
-      <Screen message={currentMessage} />
+      {currentMessage !== null ? (
+        <Screen
+          message={messages}
+          setMessage={setMessages}
+          indexM={currentMessage}
+        />
+      ) : null}
     </div>
   );
 }
