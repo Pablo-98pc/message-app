@@ -53,12 +53,12 @@ export default function App() {
           setLogged(true);
           window.localStorage.setItem(
             "userlogged",
-            JSON.stringify({ ...newData.data }),
+            JSON.stringify({ ...newData.data })
           );
         } else {
           console.log("error en login");
         }
-      },
+      }
     );
   }, [user]);
 
@@ -76,7 +76,7 @@ export default function App() {
       setLogged(true);
       window.localStorage.setItem(
         "userlogged",
-        JSON.stringify(...newData.data),
+        JSON.stringify(...newData.data)
       );
     });
   }, [user]);
@@ -98,6 +98,7 @@ export default function App() {
             <h1>Welcome</h1>
 
             <Popup
+              className="popup"
               trigger={<button> Log in</button>}
               position="center center"
               nested
@@ -120,15 +121,16 @@ export default function App() {
                   onChange={(event) => setPassword(event.target.value)}
                 ></input>
                 <button onClick={togglePassword}>Show Password</button>
+                <button onClick={getData}>LOG IN</button>
                 <span>
                   <a href="http://localhost:3000/%27%3E">
                     Forgot your password?
                   </a>
                 </span>
-                <button onClick={getData}>LOG IN</button>
               </div>
             </Popup>
             <Popup
+              className="popup"
               trigger={<button> Register</button>}
               position="center center"
               nested

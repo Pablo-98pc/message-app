@@ -9,8 +9,9 @@ import backImg from "../../images/back.svg";
 
 import postNewMessage from "../helpers/postNewMessage";
 
-export default Screen = ({ message, setMessage, indexM }) => {
+export default Screen = ({ message, setMessage, indexM, z }) => {
   console.log("mensaje", indexM);
+  const { zIndex, setZIndex } = z;
 
   const { conversation: messages } = message[indexM];
   const { name: username } = message[indexM];
@@ -28,41 +29,28 @@ export default Screen = ({ message, setMessage, indexM }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (msg.trim() !== "") {
+      const newMSg = {
+        to_user: userid,
+        from_user: ownid,
+        date: new Date().toISOString(),
+        text: msg,
+      };
+      setChat((prevChat) => [...prevChat, newMSg]);
       // Send to socket
-      // test ========================================
-      setChat((prevChat) => [
-        ...prevChat,
-        {
-          to_user: userid,
-          from_user: ownid,
-          date: new Date().toTimeString(),
-          text: msg,
-        },
-      ]);
-
-      // ================================================
       let bodytosend = {
         groupmessage: false,
         text: msg,
-        //(!) subject: subject.current.value,
         from_user: ownid,
         to_user: userid,
         date: new Date(),
       };
-      console.log("bodytosend", bodytosend);
-      await postNewMessage(bodytosend, "user").then((newData) => {
-        console.log("post", newData);
-      });
-      setMsg("");
-      let tempState = [...message];
-      tempState[indexM].conversation.push({
-        to_user: userid,
-        from_user: ownid,
-        date: new Date().toTimeString(),
-        text: msg,
-      });
 
-      setMessage(tempState); // console.log("chat", [...prevState]);
+      await postNewMessage(bodytosend, "user");
+      setMsg("");
+
+      let tempState = [...message];
+      tempState[indexM].conversation.push(newMSg);
+      setMessage(tempState);
     }
   };
 
@@ -73,9 +61,13 @@ export default Screen = ({ message, setMessage, indexM }) => {
   };
 
   return (
-    <section className="screen-container">
+    <section className="screen-container" style={zIndex}>
       <nav className="screen-nav">
-        <Link to={"/"} className="screen-back">
+        <Link
+          to={"/"}
+          className="screen-back"
+          onClick={() => setZIndex({ zIndex: -10 })}
+        >
           <img src={backImg} alt="" />
         </Link>
         <p className="screen-username">{username}</p>
