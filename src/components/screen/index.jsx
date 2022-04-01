@@ -9,8 +9,9 @@ import backImg from "../../images/back.svg";
 
 import postNewMessage from "../helpers/postNewMessage";
 
-export default Screen = ({ message, setMessage, indexM }) => {
+export default Screen = ({ message, setMessage, indexM, z }) => {
   console.log("mensaje", indexM);
+  const { zIndex, setZIndex } = z;
 
   const { conversation: messages } = message[indexM];
   const { name: username } = message[indexM];
@@ -73,9 +74,13 @@ export default Screen = ({ message, setMessage, indexM }) => {
   };
 
   return (
-    <section className="screen-container">
+    <section className="screen-container" style={zIndex}>
       <nav className="screen-nav">
-        <Link to={"/"} className="screen-back">
+        <Link
+          to={"/"}
+          className="screen-back"
+          onClick={() => setZIndex({ zIndex: -10 })}
+        >
           <img src={backImg} alt="" />
         </Link>
         <p className="screen-username">{username}</p>

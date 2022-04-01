@@ -361,7 +361,15 @@ template {
 /** ---- Global Styles  ---**/
 
 :root {
+  --hg-header: 6.8rem;
   --amarillo-mensajes: #fac710;
+  --color-primary: linear-gradient(
+    to right,
+    rgba(249, 206, 62, 1) 0%,
+    rgba(247, 209, 84, 1) 14%,
+    rgba(104, 255, 162, 1) 100%
+  );
+  --color0: rgba(104, 255, 162, 1);
   --color1: #red;
   --color2: rgb(255, 94, 0);
   --color3: #111111;

@@ -32,6 +32,8 @@ inpur-border: hsl(115,13,20)
   --brd-radius-mod: 5px;
 }
 .screen-container {
+  position: absolute;
+  top: 0;
   background-color: var(--main);
   height: 100vh;
   overflow: hidden;
@@ -40,15 +42,19 @@ inpur-border: hsl(115,13,20)
 
 /* ==================== NAV ========================== */
 .screen-nav {
+  /* +.5px for some reason (MAGIC NUMBER)*/
+  height: calc(var(--hg-header) + 0.5px);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
   padding: 1rem 2rem calc(var(--img-user) / 2);
   width: 100%;
   background-color: var(--clr-bgnav);
-  border-bottom: 2px solid var(--clr-brnav);
+  border-bottom: 1px solid var(--color0);
+}
+.screen-nav > a {
+  position: inherit;
 }
 .screen-nav > p {
   --p-username: 10rem;
@@ -175,6 +181,7 @@ inpur-border: hsl(115,13,20)
 
 /* Track */
 ::-webkit-scrollbar-track {
+  margin-top: 0.5rem;
   background: #f1f1f1;
   border-radius: 999px;
 }
@@ -188,4 +195,21 @@ inpur-border: hsl(115,13,20)
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* =========================== BACK BUTTON ============================= */
+.screen-container {
+  z-index: -10;
+}
+/* ========================== DESKTOP VIEW ============================ */
+@media (min-width: 450px) {
+  .screen-container {
+    position: inherit;
+  }
+  .screen-nav {
+    justify-content: end;
+  }
+  .screen-nav > a {
+    display: none;
+  }
 }

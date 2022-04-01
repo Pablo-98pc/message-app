@@ -17,6 +17,7 @@ export default function Profile() {
   const idfortest = dataprueba.id;
   const [isLoading, setIsLoading] = useState(true);
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [zIndex, setZIndex] = useState({ zIndex: 10 });
 
   const getmessage = useCallback(async () => {
     // params:user id
@@ -38,7 +39,7 @@ export default function Profile() {
           conversation: data.data.rows,
         };
         return finalConversations;
-      }),
+      })
     );
 
     // order conversations for descending date
@@ -89,13 +90,15 @@ export default function Profile() {
           conversations={messages}
           isLoading={isLoading}
           setCurrentMessage={setCurrentMessage}
+          setZIndex={setZIndex}
         />
       </div>
-      {currentMessage !== null ? (
+      {currentMessage !== null /* true */ ? (
         <Screen
           message={messages}
           setMessage={setMessages}
           indexM={currentMessage}
+          z={{ zIndex, setZIndex }}
         />
       ) : null}
     </div>

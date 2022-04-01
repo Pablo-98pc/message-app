@@ -1,8 +1,9 @@
 .header {
+  background-color: black;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  height: 110px;
+  height: var(--hg-header);
   padding: 0 20px 0 20px;
 }
 
@@ -27,11 +28,7 @@ h2 {
 .left-side-inbox {
   border-right: 1.5px solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(
-    to bottom,
-    rgba(104, 255, 162, 1) 0%,
-    rgba(249, 206, 62, 1) 100%
-  );
+  border-image-source: var(--color-primary);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 );
   flex-basis: 50%;
 }

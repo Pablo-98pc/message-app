@@ -5,7 +5,12 @@ import "./inbox.css";
 
 import { Icon } from "@iconify/react";
 
-export default function Inbox({ conversations, isLoading, setCurrentMessage }) {
+export default function Inbox({
+  conversations,
+  isLoading,
+  setCurrentMessage,
+  setZIndex,
+}) {
   const [messages, setMessages] = useState(conversations);
 
   useEffect(() => {
@@ -26,6 +31,7 @@ export default function Inbox({ conversations, isLoading, setCurrentMessage }) {
             <div
               className="card-body"
               onClick={() => {
+                setZIndex({ zIndex: 10 });
                 // console.log("indexmap", index);
                 setCurrentMessage(index);
               }}
