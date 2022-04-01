@@ -7,6 +7,7 @@
   color: #fff;
 
   overflow-y: auto;
+  
 }
 
 .card-body {
@@ -25,6 +26,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 3s;
 }
 .card-body:last-of-type {
   border-bottom: 1px solid;
@@ -89,6 +91,4 @@
   border-bottom: 2px solid rgba(255,255,255,0.8);
   outline: none;
 }
-.new-chat-input:focus{
-   
-}
+

@@ -74,11 +74,7 @@ export default function Profile() {
     });
   };
 
-  //Funcion that handle new message
-  const clickNewMessage = () => {
-    console.log("NewMessage");
-  };
-  console.log("current", messages);
+  // console.log("current", messages);
   return (
     <div className="container-profile">
       <div className="left-side-inbox">
@@ -93,6 +89,10 @@ export default function Profile() {
           conversations={messages}
           isLoading={isLoading}
           setCurrentMessage={setCurrentMessage}
+          setMessagesP={setMessages}
+          newMessage={newMessage}
+          setNewMessage={setNewMessage}
+
         />
       </div>
       {currentMessage !== null ? (

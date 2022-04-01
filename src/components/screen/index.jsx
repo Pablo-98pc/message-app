@@ -10,7 +10,7 @@ import backImg from "../../images/back.svg";
 import postNewMessage from "../helpers/postNewMessage";
 
 export default Screen = ({ message, setMessage, indexM }) => {
-  console.log("mensaje", indexM);
+
 
   const { conversation: messages } = message[indexM];
   const { name: username } = message[indexM];
@@ -21,7 +21,6 @@ export default Screen = ({ message, setMessage, indexM }) => {
   const [chat, setChat] = useState(messages);
   const messagesEnd = useRef(null);
   useEffect(() => {
-    // console.log("cambie", messages);
     setChat(messages);
   }, [indexM, message]);
 
@@ -49,9 +48,9 @@ export default Screen = ({ message, setMessage, indexM }) => {
         to_user: userid,
         date: new Date(),
       };
-      console.log("bodytosend", bodytosend);
+      // console.log("bodytosend", bodytosend);
       await postNewMessage(bodytosend, "user").then((newData) => {
-        console.log("post", newData);
+        // console.log("post", newData);
       });
       setMsg("");
       let tempState = [...message];
@@ -101,6 +100,7 @@ export default Screen = ({ message, setMessage, indexM }) => {
         </div>
         <form onSubmit={handleSubmit} className="screen-form" action="">
           <input
+          autoFocus 
             type="text"
             className="screen-input"
             value={msg}
