@@ -14,6 +14,7 @@ export default function Card({
   const DefaultCard = () => {
     // console.log("LOG", message);
     let hasMessages = message.conversation.length > 0;
+    const lengthArray = message.conversation.length - 1;
     return (
       <div
         className="card-body"
@@ -32,12 +33,12 @@ export default function Card({
             <p className="card-name">{message.name}</p>
             {hasMessages ? (
               <p className="card-last-messsage-text">
-                {message.conversation[message.conversation.length - 1].text
+                {message.conversation[lengthArray].text
                   .length > 20
                   ? message.conversation[
-                      message.conversation.length - 1
+                    lengthArray
                     ].text.slice(0, 20) + " ..."
-                  : message.conversation[message.conversation.length - 1].text}
+                  : message.conversation[lengthArray].text}
               </p>
             ) : (
               ""
@@ -46,7 +47,7 @@ export default function Card({
         </div>
         <div className="card-arrow-right">
           {hasMessages ? (
-            <p>{new Date(message.date).toTimeString().slice(0, 5)}</p>
+            <p>{new Date(message.conversation[lengthArray]).toTimeString().slice(0, 5)}</p>
           ) : (
             ""
           )}
@@ -96,6 +97,8 @@ export default function Card({
       } else {
         //Falta gestion de notificar que no existe el usuario
         // console.log("No existe user");
+        document.getElementById('input-new').classList.add("error-input");
+        
       }
     };
 
@@ -113,6 +116,7 @@ export default function Card({
         <input
           autoFocus 
           type="text"
+          id="input-new"
           value={newChat}
           onChange={handleInput}
           className="new-chat-input"

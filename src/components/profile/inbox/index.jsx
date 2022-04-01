@@ -18,6 +18,7 @@ export default function Inbox({
     setIsNewMessage(newMessage);
   }, [conversations, newMessage]);
 
+  console.log("MMMM",messages);
   return (
     <>
       <div className="card">
