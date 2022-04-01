@@ -30,5 +30,4 @@ h2 {
   border-image-slice: 1;
   border-image-source: var(--color-side);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 );
-  flex-basis: 50%;
 }

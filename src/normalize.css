@@ -361,7 +361,7 @@ template {
 /** ---- Global Styles  ---**/
 
 :root {
-  --hg-header: 6.8rem;
+  --hg-header: 116px;
   --amarillo-mensajes: #fac710;
   --color-primary: linear-gradient(
     to right,

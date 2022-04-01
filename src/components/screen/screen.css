@@ -44,7 +44,7 @@ inpur-border: hsl(115,13,20)
 /* ==================== NAV ========================== */
 .screen-nav {
   /* +.5px for some reason (MAGIC NUMBER)*/
-  height: calc(var(--hg-header) + 0.7px);
+  height: var(--hg-header);
   position: relative;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@ inpur-border: hsl(115,13,20)
   padding: 1rem 2rem calc(var(--img-user) / 2);
   width: 100%;
   background-color: var(--color3);
-  border-bottom: 1px solid var(--color0);
+  outline: 1px solid var(--color0);
 }
 .screen-nav > a {
   position: inherit;
