@@ -30,6 +30,7 @@ inpur-border: hsl(115,13,20)
   --pdg-side: 3rem;
   --brd-radius: 15px;
   --brd-radius-mod: 5px;
+  --hg-input: 4rem;
 }
 .screen-container {
   position: absolute;
@@ -79,7 +80,7 @@ inpur-border: hsl(115,13,20)
 /* ====================== MESSAGES ==================== */
 .screen-msg {
   padding: 0 var(--pdg-side);
-  height: 75vh;
+  height: calc(100vh - var(--hg-header) - var(--hg-input));
   overflow: auto;
   margin-right: 3px;
   position: relative;
@@ -142,10 +143,11 @@ inpur-border: hsl(115,13,20)
   align-items: center;
   width: calc(100% - var(--pdg-side) * 2);
   margin: 0 auto;
+  height: var(--hg-input);
 }
 .screen-form > input {
   width: 100%;
-  margin: 1rem 0;
+  margin: 0.5rem 0 1rem;
   padding: 0.7rem;
   border: 1px solid var(--clr-input);
   background-color: var(--clr-bgnav);
@@ -159,7 +161,7 @@ inpur-border: hsl(115,13,20)
 .screen-form > button {
   border: none;
   background: none;
-  margin: 0 -4.5rem -0.2rem;
+  margin: 0 -4.5rem 0.2rem;
   border-radius: 50%;
   opacity: 0.8;
 }
