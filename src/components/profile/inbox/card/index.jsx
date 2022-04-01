@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import getProfileByUsername from "../../../helpers/getProfileByUsername";
 
 export default function Card({
@@ -10,16 +10,23 @@ export default function Card({
   messages,
   typeCard,
   setIsNewMessage,
+  setZIndex,
 }) {
   const DefaultCard = () => {
     // console.log("LOG", message);
+    const [updatedLength,setUpdatedLength] = useState(message.conversation.length - 1);
     let hasMessages = message.conversation.length > 0;
-    const lengthArray = message.conversation.length - 1;
+    useEffect(() => {
+      setUpdatedLength(message.conversation.length - 1);
+    }, [message]);
+    let tempDate = new Date(message.conversation[updatedLength].date);
+    tempDate.setHours(tempDate.getHours() + 2);
     return (
       <div
         className="card-body"
         onClick={() => {
           // console.log("indexmap", index);
+          setZIndex({ zIndex: 10 });
           setIsNewMessage(false);
           setCurrentMessage(index);
         }}
@@ -33,12 +40,9 @@ export default function Card({
             <p className="card-name">{message.name}</p>
             {hasMessages ? (
               <p className="card-last-messsage-text">
-                {message.conversation[lengthArray].text
-                  .length > 20
-                  ? message.conversation[
-                    lengthArray
-                    ].text.slice(0, 20) + " ..."
-                  : message.conversation[lengthArray].text}
+                {message.conversation[updatedLength].text.length > 20
+                  ? message.conversation[updatedLength].text.slice(0, 20) + " ..."
+                  : message.conversation[updatedLength].text}
               </p>
             ) : (
               ""
@@ -47,7 +51,11 @@ export default function Card({
         </div>
         <div className="card-arrow-right">
           {hasMessages ? (
-            <p>{new Date(message.conversation[lengthArray]).toTimeString().slice(0, 5)}</p>
+            <p>
+              { tempDate
+                .toTimeString()
+                .slice(0, 5)}
+            </p>
           ) : (
             ""
           )}
@@ -81,7 +89,7 @@ export default function Card({
         if (userId !== -1) {
           setCurrentMessage(userId);
         } else {
-        //   console.log("userTo", userTo);
+          //   console.log("userTo", userTo);
           let tempState = [...messages];
           tempState.unshift({
             userid: userTo.id,
@@ -92,13 +100,14 @@ export default function Card({
           setIsNewMessage(false);
           setMessages(tempState);
           setCurrentMessage(0);
+          setZIndex({ zIndex: 10 });
+          
           
         }
       } else {
         //Falta gestion de notificar que no existe el usuario
         // console.log("No existe user");
-        document.getElementById('input-new').classList.add("error-input");
-        
+        document.getElementById("input-new").classList.add("error-input");
       }
     };
 
@@ -114,7 +123,7 @@ export default function Card({
     return (
       <div className="card-body new-chat-container">
         <input
-          autoFocus 
+          autoFocus
           type="text"
           id="input-new"
           value={newChat}

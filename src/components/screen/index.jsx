@@ -27,11 +27,13 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let tempDate = new Date();
+    tempDate.setHours(tempDate.getHours() + 2);
     if (msg.trim() !== "") {
       const newMSg = {
         to_user: userid,
         from_user: ownid,
-        date: new Date().toISOString(),
+        date: tempDate.toISOString(),
         text: msg,
       };
       setChat((prevChat) => [...prevChat, newMSg]);

@@ -5,7 +5,6 @@ export default function Inbox({
   conversations,
   isLoading,
   setCurrentMessage,
-  newMessage
   setMessagesP,
   newMessage,
   setNewMessage,
@@ -30,6 +29,7 @@ export default function Inbox({
             setCurrentMessage={setCurrentMessage}
             setMessages={setMessagesP}
             setIsNewMessage={setNewMessage}
+            setZIndex={setZIndex}
           />
         ) : (
           ""
