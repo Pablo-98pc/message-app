@@ -9,9 +9,9 @@ import backImg from "../../images/back.svg";
 
 import postNewMessage from "../helpers/postNewMessage";
 
-
 export default Screen = ({ message, setMessage, indexM, z }) => {
   //console.log("mensaje", indexM);
+  console.log("MEDDDASDASDFASD", message[indexM]);
   const { zIndex, setZIndex } = z;
   const { conversation: messages } = message[indexM];
   const { name: username } = message[indexM];
@@ -28,15 +28,16 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let tempDate = new Date();
-    tempDate.setHours(tempDate.getHours() + 2);
+    tempDate.setHours(tempDate.getHours() - 2);
     if (msg.trim() !== "") {
-      const newMSg = {
+      const newMsg = {
         to_user: userid,
         from_user: ownid,
         date: tempDate.toISOString(),
         text: msg,
       };
-      setChat((prevChat) => [...prevChat, newMSg]);
+      // setChat((prevChat) => [...prevChat, newMsg]);
+
       // Send to socket
       let bodytosend = {
         groupmessage: false,
@@ -46,16 +47,17 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
         date: new Date(),
       };
 
+      console.log("MMMMSDSDFM", newMsg.date);
       await postNewMessage(bodytosend, "user");
       setMsg("");
       let tempState = [...message];
-      tempState[indexM].conversation.push(newMSg);
+      tempState[indexM].conversation.push(newMsg);
       setMessage(tempState);
     }
   };
 
   useEffect(() => scrollToBottom(), []);
-  useEffect(() => scrollToBottom("smooth"), [chat]);
+  useEffect(() => scrollToBottom("smooth"), [message]);
   const scrollToBottom = (behavior) => {
     messagesEnd.current.scrollIntoView({ behavior });
   };
@@ -78,13 +80,16 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
           {chat.map(({ from_user, text, date }, i, array) => {
             let tagClass = "left";
             const next = array[i + 1]?.from_user;
+            let h = new Date(date);
+            h.setHours(h.getHours() + 2);
+            date = h.toTimeString().slice(0, 5);
 
             if (from_user === ownid) tagClass = "rigth";
             if (from_user === next) tagClass += " head-msg";
 
             return (
               <p key={`msg-${i}`} className={tagClass}>
-                {text} <span>{date.split("T")[1].substring(0, 5)}</span>
+                {text} <span>{date}</span>
               </p>
             );
           })}
@@ -93,7 +98,7 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
         </div>
         <form onSubmit={handleSubmit} className="screen-form" action="">
           <input
-          autoFocus 
+            autoFocus
             type="text"
             className="screen-input"
             value={msg}
