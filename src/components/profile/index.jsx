@@ -18,7 +18,7 @@ export default function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentMessage, setCurrentMessage] = useState(null);
   const [newMessage,setNewMessage] = useState(false);
-
+  const [zIndex, setZIndex] = useState({ zIndex: 10 });
   const getmessage = useCallback(async () => {
     // params:user id
     // return : conversation id , name
@@ -92,14 +92,15 @@ export default function Profile() {
           setMessagesP={setMessages}
           newMessage={newMessage}
           setNewMessage={setNewMessage}
-
+          setZIndex={setZIndex}
         />
       </div>
-      {currentMessage !== null ? (
+      {currentMessage !== null /* true */ ? (
         <Screen
           message={messages}
           setMessage={setMessages}
           indexM={currentMessage}
+          z={{ zIndex, setZIndex }}
         />
       ) : null}
     </div>

@@ -361,7 +361,15 @@ template {
 /** ---- Global Styles  ---**/
 
 :root {
+  --hg-header: 6.8rem;
   --amarillo-mensajes: #fac710;
+  --color-primary: linear-gradient(
+    to right,
+    rgba(249, 206, 62, 1) 0%,
+    rgba(247, 209, 84, 1) 14%,
+    rgba(104, 255, 162, 1) 100%
+  );
+  --color0: rgba(104, 255, 162, 1);
   --color1: #red;
   --color2: rgb(255, 94, 0);
   --color3: #111111;
@@ -414,6 +422,9 @@ button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+
+  /* Added styles */
+  border-radius: 999px;
 }
 
 button::after,
@@ -423,6 +434,7 @@ button::before {
   width: 0;
   height: 0;
   transition: 0.5s;
+  border-radius: 999px;
 }
 
 button::after {
@@ -447,5 +459,14 @@ button:hover::after,
 button:hover::before {
   width: calc(100% + 15px);
   height: calc(100% + 15px);
-  border-color: #222222;
+}
+button:hover::after {
+  border-color: rgba(104, 255, 162, 1);
+}
+button:hover::before {
+  border-color: rgba(249, 206, 62, 1);
+}
+
+input {
+  border-radius: 12px;
 }

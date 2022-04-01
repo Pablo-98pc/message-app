@@ -9,6 +9,9 @@
   background: rgba(0, 0, 0, 0.7);
   transition: opacity 500ms;
 }
+.popup-content {
+  border-radius: 12px;
+}
 .popup {
   /* margin: 70px auto; */
   padding: 20px;

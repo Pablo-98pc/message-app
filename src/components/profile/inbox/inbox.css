@@ -18,12 +18,7 @@
   height: 100px;
   border-top: 1.5px solid;
   border-image-slice: 1;
-  border-image-source: linear-gradient(
-    to right,
-    rgba(249, 206, 62, 1) 0%,
-    rgba(247, 209, 84, 1) 14%,
-    rgba(104, 255, 162, 1) 100%
-  );
+  border-image-source: var(--color-primary);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9ce3e', endColorstr='#68ffa2',GradientType=1 );
   display: flex;
   justify-content: space-between;

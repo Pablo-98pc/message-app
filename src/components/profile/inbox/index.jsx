@@ -5,9 +5,11 @@ export default function Inbox({
   conversations,
   isLoading,
   setCurrentMessage,
+  newMessage
   setMessagesP,
   newMessage,
   setNewMessage,
+  setZIndex
 }) {
   const [messages, setMessages] = useState(conversations);
   const [isNewMessage, setIsNewMessage] = useState(newMessage);
@@ -18,7 +20,6 @@ export default function Inbox({
     setIsNewMessage(newMessage);
   }, [conversations, newMessage]);
 
-  console.log("MMMM",messages);
   return (
     <>
       <div className="card">
@@ -47,7 +48,8 @@ export default function Inbox({
               setCurrentMessage={setCurrentMessage}
               index={index}
               message={message}
-              setIsNewMessage={setNewMessage}
+              setIsNewMessage={setNewMessage} 
+              setZIndex={setZIndex}
             />
           ))
         )}
