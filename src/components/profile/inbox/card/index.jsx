@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import getProfileByUsername from "../../../helpers/getProfileByUsername";
 
 export default function Card({
@@ -14,12 +14,14 @@ export default function Card({
 }) {
   const DefaultCard = () => {
     // console.log("LOG", message);
-    const [updatedLength,setUpdatedLength] = useState(message.conversation.length - 1);
+    const [updatedLength, setUpdatedLength] = useState(
+      message.conversation.length - 1
+    );
     let hasMessages = message.conversation.length > 0;
     useEffect(() => {
       setUpdatedLength(message.conversation.length - 1);
     }, [message]);
-    let tempDate = new Date(message.conversation[updatedLength].date);
+    let tempDate = new Date(message.conversation[updatedLength]?.date);
     tempDate.setHours(tempDate.getHours() + 2);
     return (
       <div
@@ -41,7 +43,8 @@ export default function Card({
             {hasMessages ? (
               <p className="card-last-messsage-text">
                 {message.conversation[updatedLength].text.length > 20
-                  ? message.conversation[updatedLength].text.slice(0, 20) + " ..."
+                  ? message.conversation[updatedLength].text.slice(0, 20) +
+                    " ..."
                   : message.conversation[updatedLength].text}
               </p>
             ) : (
@@ -50,15 +53,7 @@ export default function Card({
           </div>
         </div>
         <div className="card-arrow-right">
-          {hasMessages ? (
-            <p>
-              { tempDate
-                .toTimeString()
-                .slice(0, 5)}
-            </p>
-          ) : (
-            ""
-          )}
+          {hasMessages ? <p>{tempDate.toTimeString().slice(0, 5)}</p> : ""}
 
           <Icon icon="akar-icons:chevron-right"></Icon>
         </div>
@@ -101,8 +96,6 @@ export default function Card({
           setMessages(tempState);
           setCurrentMessage(0);
           setZIndex({ zIndex: 10 });
-          
-          
         }
       } else {
         //Falta gestion de notificar que no existe el usuario
