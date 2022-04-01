@@ -148,7 +148,7 @@ inpur-border: hsl(115,13,20)
 .screen-form > input {
   width: 100%;
   margin: 0.5rem 0 1rem;
-  padding: 0.7rem;
+  padding: 0.7rem 3rem 0.7rem 0.7rem;
   border: 1px solid var(--clr-input);
   background-color: var(--clr-bgnav);
   border-radius: var(--brd-radius);
