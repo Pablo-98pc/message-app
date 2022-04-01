@@ -17,8 +17,8 @@ export default function Profile() {
   const idfortest = dataprueba.id;
   const [isLoading, setIsLoading] = useState(true);
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [newMessage,setNewMessage] = useState(false);
   const [zIndex, setZIndex] = useState({ zIndex: 10 });
-
   const getmessage = useCallback(async () => {
     // params:user id
     // return : conversation id , name
@@ -73,7 +73,8 @@ export default function Profile() {
       await getmessage();
     });
   };
-  console.log("current", messages);
+
+  // console.log("current", messages);
   return (
     <div className="container-profile">
       <div className="left-side-inbox">
@@ -81,15 +82,16 @@ export default function Profile() {
           <Avatar />
           <h2>Chats</h2>
           <div className="messageButton">
-            <Link to={`/newmessage`}>
-              <img alt="Profile pic" src={foto}></img>
-            </Link>
+            <img alt="Profile pic" src={foto} onClick={()=>setNewMessage(true)}></img>
           </div>
         </div>
         <Inbox
           conversations={messages}
           isLoading={isLoading}
           setCurrentMessage={setCurrentMessage}
+          setMessagesP={setMessages}
+          newMessage={newMessage}
+          setNewMessage={setNewMessage}
           setZIndex={setZIndex}
         />
       </div>

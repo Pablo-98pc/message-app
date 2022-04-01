@@ -9,20 +9,19 @@ import backImg from "../../images/back.svg";
 
 import postNewMessage from "../helpers/postNewMessage";
 
-export default Screen = ({ message, setMessage, indexM, z }) => {
-  console.log("mensaje", indexM);
-  const { zIndex, setZIndex } = z;
 
+export default Screen = ({ message, setMessage, indexM, z }) => {
+  //console.log("mensaje", indexM);
+  const { zIndex, setZIndex } = z;
   const { conversation: messages } = message[indexM];
   const { name: username } = message[indexM];
   const { userid } = message[indexM];
   const ownid = useContext(Context)?.id;
 
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState("");
   const [chat, setChat] = useState(messages);
   const messagesEnd = useRef(null);
   useEffect(() => {
-    // console.log("cambie", messages);
     setChat(messages);
   }, [indexM, message]);
 
@@ -47,7 +46,6 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
 
       await postNewMessage(bodytosend, "user");
       setMsg("");
-
       let tempState = [...message];
       tempState[indexM].conversation.push(newMSg);
       setMessage(tempState);
@@ -93,6 +91,7 @@ export default Screen = ({ message, setMessage, indexM, z }) => {
         </div>
         <form onSubmit={handleSubmit} className="screen-form" action="">
           <input
+          autoFocus 
             type="text"
             className="screen-input"
             value={msg}

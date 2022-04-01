@@ -1,25 +1,39 @@
 import { useEffect, useState, useContext, useCallback } from "react";
-import { Link } from "react-router-dom";
-
 import "./inbox.css";
-
-import { Icon } from "@iconify/react";
-
+import Card from "./card";
 export default function Inbox({
   conversations,
   isLoading,
   setCurrentMessage,
-  setZIndex,
+  newMessage
+  setMessagesP,
+  newMessage,
+  setNewMessage,
+  setZIndex
 }) {
   const [messages, setMessages] = useState(conversations);
+  const [isNewMessage, setIsNewMessage] = useState(newMessage);
+ 
 
   useEffect(() => {
     setMessages(conversations);
-  }, [conversations]);
+    setIsNewMessage(newMessage);
+  }, [conversations, newMessage]);
 
   return (
     <>
       <div className="card">
+        {isNewMessage ? (
+          <Card
+            typeCard={false}
+            messages={messages}
+            setCurrentMessage={setCurrentMessage}
+            setMessages={setMessagesP}
+            setIsNewMessage={setNewMessage}
+          />
+        ) : (
+          ""
+        )}
         {isLoading ? (
           <div className="text-center">
             <div className="spinner-border" role="status">
@@ -28,37 +42,15 @@ export default function Inbox({
           </div>
         ) : (
           messages?.map((message, index) => (
-            <div
-              className="card-body"
-              onClick={() => {
-                setZIndex({ zIndex: 10 });
-                // console.log("indexmap", index);
-                setCurrentMessage(index);
-              }}
+            <Card
               key={index}
-            >
-              <div className="card-flex">
-                <div className="card-container-pic">
-                  <img src="" alt="" />
-                </div>
-                <div className="card-text">
-                  <p className="card-name">{message.name}</p>
-                  <p className="card-last-messsage-text">
-                    {message.conversation[message.conversation.length - 1].text
-                      .length > 20
-                      ? message.conversation[
-                          message.conversation.length - 1
-                        ].text.slice(0, 20) + " ..."
-                      : message.conversation[message.conversation.length - 1]
-                          .text}
-                  </p>
-                </div>
-              </div>
-              <div className="card-arrow-right">
-                <p>{new Date(message.date).toTimeString().slice(0, 5)}</p>
-                <Icon icon="akar-icons:chevron-right"></Icon>
-              </div>
-            </div>
+              typeCard={true}
+              setCurrentMessage={setCurrentMessage}
+              index={index}
+              message={message}
+              setIsNewMessage={setNewMessage} 
+              setZIndex={setZIndex}
+            />
           ))
         )}
       </div>
