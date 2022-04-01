@@ -79,3 +79,16 @@
   margin: 10px 0 0 0;
   font-size: 12px;
 }
+
+.new-chat-input{
+  background-color: rgba(0,0,0,0.2);
+  color:white;
+  width: 80%;
+  border:none;
+  height: 35px;
+  border-bottom: 2px solid rgba(255,255,255,0.8);
+  outline: none;
+}
+.new-chat-input:focus{
+   
+}

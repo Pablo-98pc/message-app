@@ -17,7 +17,7 @@ export default Screen = ({ message, setMessage, indexM }) => {
   const { userid } = message[indexM];
   const ownid = useContext(Context)?.id;
 
-  const [msg, setMsg] = useState();
+  const [msg, setMsg] = useState("");
   const [chat, setChat] = useState(messages);
   const messagesEnd = useRef(null);
   useEffect(() => {

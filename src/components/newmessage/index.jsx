@@ -21,7 +21,6 @@ export default function NewMessage() {
       let bodytosend = {
         groupmessage: false,
         text: message.current.value,
-        subject: subject.current.value,
         from_user: data.id,
         to_user: userId?.id,
         date: new Date(),
@@ -31,7 +30,6 @@ export default function NewMessage() {
         console.log(newData);
       });
       message.current.value = "";
-      subject.current.value = "";
       receiver.current.value = "";
 
       navigate("/");
@@ -43,12 +41,6 @@ export default function NewMessage() {
     <div className="main">
       <form class="new-message">
         <div className="form-header">
-          <input
-            type="text"
-            placeholder="subject"
-            ref={subject}
-            name="subject"
-          />
           <input
             type="text"
             placeholder="to"

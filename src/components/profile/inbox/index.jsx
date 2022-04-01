@@ -1,10 +1,6 @@
 import { useEffect, useState, useContext, useCallback } from "react";
-import { Link } from "react-router-dom";
-
 import "./inbox.css";
-
-import { Icon } from "@iconify/react";
-
+import Card from "./card"
 export default function Inbox({ conversations, isLoading, setCurrentMessage }) {
   const [messages, setMessages] = useState(conversations);
 
@@ -15,6 +11,7 @@ export default function Inbox({ conversations, isLoading, setCurrentMessage }) {
   return (
     <>
       <div className="card">
+      <Card typeCard={false}  setCurrentMessage={setCurrentMessage}/>
         {isLoading ? (
           <div className="text-center">
             <div className="spinner-border" role="status">
@@ -22,39 +19,9 @@ export default function Inbox({ conversations, isLoading, setCurrentMessage }) {
             </div>
           </div>
         ) : (
-          messages?.map((message, index) => (
-            <div
-              className="card-body"
-              onClick={() => {
-                // console.log("indexmap", index);
-                setCurrentMessage(index);
-              }}
-              key={index}
-            >
-              <div className="card-flex">
-                <div className="card-container-pic">
-                  <img src="" alt="" />
-                </div>
-                <div className="card-text">
-                  <p className="card-name">{message.name}</p>
-                  <p className="card-last-messsage-text">
-                    {message.conversation[message.conversation.length - 1].text
-                      .length > 20
-                      ? message.conversation[
-                          message.conversation.length - 1
-                        ].text.slice(0, 20) + " ..."
-                      : message.conversation[message.conversation.length - 1]
-                          .text}
-                  </p>
-                </div>
-              </div>
-              <div className="card-arrow-right">
-                <p>{new Date(message.date).toTimeString().slice(0, 5)}</p>
-                <Icon icon="akar-icons:chevron-right"></Icon>
-              </div>
-            </div>
-          ))
+          messages?.map((message, index) => <Card key={index} typeCard={true} setCurrentMessage={setCurrentMessage} index={index} message={message} />)
         )}
+        
       </div>
     </>
   );

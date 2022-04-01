@@ -17,6 +17,7 @@ export default function Profile() {
   const idfortest = dataprueba.id;
   const [isLoading, setIsLoading] = useState(true);
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [newMessage,setNewMessage] = useState(false);
 
   const getmessage = useCallback(async () => {
     // params:user id
@@ -38,7 +39,7 @@ export default function Profile() {
           conversation: data.data.rows,
         };
         return finalConversations;
-      }),
+      })
     );
 
     // order conversations for descending date
@@ -72,6 +73,11 @@ export default function Profile() {
       await getmessage();
     });
   };
+
+  //Funcion that handle new message
+  const clickNewMessage = () => {
+    console.log("NewMessage");
+  };
   console.log("current", messages);
   return (
     <div className="container-profile">
@@ -80,9 +86,7 @@ export default function Profile() {
           <Avatar />
           <h2>Chats</h2>
           <div className="messageButton">
-            <Link to={`/newmessage`}>
-              <img alt="Profile pic" src={foto}></img>
-            </Link>
+            <img alt="Profile pic" src={foto} onClick={()=>setNewMessage(true)}></img>
           </div>
         </div>
         <Inbox
