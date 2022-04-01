@@ -459,7 +459,12 @@ button:hover::after,
 button:hover::before {
   width: calc(100% + 15px);
   height: calc(100% + 15px);
-  border-color: #222222;
+}
+button:hover::after {
+  border-color: rgba(104, 255, 162, 1);
+}
+button:hover::before {
+  border-color: rgba(249, 206, 62, 1);
 }
 
 input {
