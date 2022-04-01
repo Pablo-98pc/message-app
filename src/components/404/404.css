@@ -1,0 +1,7 @@
+.main {
+  margin-top: 5rem;
+  border-radius: 12px;
+}
+.main > h1 {
+  text-align: center;
+}

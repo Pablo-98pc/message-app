@@ -205,6 +205,8 @@ inpur-border: hsl(115,13,20)
 @media (min-width: 450px) {
   .screen-container {
     position: inherit;
+    /* necessary to overwrite inline style set by useState */
+    z-index: 10 !important;
   }
   .screen-nav {
     justify-content: end;

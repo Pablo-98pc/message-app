@@ -422,6 +422,9 @@ button {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+
+  /* Added styles */
+  border-radius: 999px;
 }
 
 button::after,
@@ -431,6 +434,7 @@ button::before {
   width: 0;
   height: 0;
   transition: 0.5s;
+  border-radius: 999px;
 }
 
 button::after {
@@ -456,4 +460,8 @@ button:hover::before {
   width: calc(100% + 15px);
   height: calc(100% + 15px);
   border-color: #222222;
+}
+
+input {
+  border-radius: 12px;
 }
