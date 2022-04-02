@@ -83,6 +83,7 @@ export default function Card({
         //En caso de existir ya un chat con el usuario lo abre
         if (userId !== -1) {
           setCurrentMessage(userId);
+          setIsNewMessage(false);
         } else {
           //   console.log("userTo", userTo);
           let tempState = [...messages];
